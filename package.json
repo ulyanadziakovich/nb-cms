@@ -7,7 +7,7 @@
     "dev": "pruvious dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "npm rebuild sqlite3 --build-from-source && nuxt prepare"
   },
   "dependencies": {
     "nuxt": "^4.4.6",
