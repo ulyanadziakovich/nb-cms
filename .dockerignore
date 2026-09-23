@@ -1,0 +1,41 @@
+# Zaleznosci i artefakty buildu - instalowane/generowane w obrazie
+node_modules
+.nuxt
+.nitro
+.output
+dist
+.cache
+.data
+.pruvious
+.autoload.sql
+
+# Metadane repo i CI
+.git
+.gitignore
+.github
+README.md
+
+# Konfiguracja wdrozenia - nie jest czescia obrazu aplikacji
+deploy
+
+# Sekrety i dane lokalne - nigdy nie trafiaja do kontekstu buildu
+.env
+.env.*
+!.env.example
+.ssh.*
+*.pem
+*.key
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+.uploads
+uploads
+public/uploads
+
+# Smieci systemowe
+.DS_Store
+.idea
+.fleet
+logs
+*.log

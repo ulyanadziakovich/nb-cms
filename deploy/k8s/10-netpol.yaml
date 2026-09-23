@@ -1,0 +1,90 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: default-deny-all, namespace: pruvious }
+spec:
+  podSelector: {}
+  policyTypes: [Ingress, Egress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: allow-dns, namespace: pruvious }
+spec:
+  podSelector: {}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: kube-system } }
+          podSelector: { matchLabels: { k8s-app: kube-dns } }
+      ports:
+        - { protocol: UDP, port: 53 }
+        - { protocol: TCP, port: 53 }
+---
+# Ruch z hosta (kubelet probes): zrodlo to cni0 (10.42.0.1) albo IP noda (R12)
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: allow-node-probes, namespace: pruvious }
+spec:
+  podSelector: {}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - ipBlock: { cidr: 10.42.0.1/32 }
+        - ipBlock: { cidr: 57.128.213.58/32 }
+      ports:
+        - { protocol: TCP, port: 3000 }
+        - { protocol: TCP, port: 2000 }
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: pruvious-ingress-from-cloudflared, namespace: pruvious }
+spec:
+  podSelector: { matchLabels: { app: pruvious } }
+  policyTypes: [Ingress]
+  ingress:
+    - from: [ { podSelector: { matchLabels: { app: cloudflared } } } ]
+      ports: [ { protocol: TCP, port: 3000 } ]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: cloudflared-egress, namespace: pruvious }
+spec:
+  podSelector: { matchLabels: { app: cloudflared } }
+  policyTypes: [Egress]
+  egress:
+    - to: [ { podSelector: { matchLabels: { app: pruvious } } } ]
+      ports: [ { protocol: TCP, port: 3000 } ]
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except: [10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 100.64.0.0/10, 169.254.0.0/16]
+      ports:
+        - { protocol: TCP, port: 7844 }
+        - { protocol: TCP, port: 443 }
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: pruvious-egress, namespace: pruvious }
+spec:
+  podSelector: { matchLabels: { app: pruvious } }
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except: [10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 100.64.0.0/10, 169.254.0.0/16]
+      ports:
+        - { protocol: TCP, port: 443 }
+        - { protocol: TCP, port: 587 }
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: backup-egress, namespace: pruvious }
+spec:
+  podSelector: { matchLabels: { app: pruvious-backup } }
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except: [10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 100.64.0.0/10, 169.254.0.0/16]
+      ports: [ { protocol: TCP, port: 443 } ]

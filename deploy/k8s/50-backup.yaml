@@ -1,0 +1,70 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata: { name: pruvious-backup, namespace: pruvious }
+spec:
+  schedule: "15 3 * * *"
+  timeZone: "Europe/Warsaw"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        metadata: { labels: { app: pruvious-backup } }
+        spec:
+          restartPolicy: Never
+          automountServiceAccountToken: false
+          enableServiceLinks: false
+          imagePullSecrets: [ { name: ghcr } ]
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            seccompProfile: { type: RuntimeDefault }
+          containers:
+            - name: backup
+              image: ghcr.io/ulyanadziakovich/nb-cms-backup:__IMAGE_TAG__
+              envFrom: [ { secretRef: { name: backup-config } } ]   # AGE_RECIPIENT, HC_BACKUP_URL
+              env:
+                - { name: HOME, value: /tmp }
+                - { name: DB_PATH, value: /data/db/pruvious.db }
+                - { name: DEST, value: /data/backups }
+                - { name: KEEP_DAYS, value: "14" }
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  set -eu
+                  fail() { [ -n "${HC_BACKUP_URL:-}" ] && curl -fsS -m 10 "$HC_BACKUP_URL/fail" >/dev/null 2>&1 || true; }
+                  trap 'rc=$?; [ $rc -ne 0 ] && fail; exit $rc' EXIT
+                  TS=$(date -u +%Y%m%dT%H%M%SZ)
+                  mkdir -p "$DEST"
+                  # .backup dziala na zywej bazie (obsluguje locki i WAL)
+                  sqlite3 "$DB_PATH" ".backup '/tmp/db-$TS.sqlite'"
+                  [ "$(sqlite3 /tmp/db-$TS.sqlite 'PRAGMA integrity_check;')" = "ok" ]
+                  gzip "/tmp/db-$TS.sqlite"
+                  # szyfrowanie kluczem publicznym - prywatny istnieje wylacznie offline
+                  age -r "$AGE_RECIPIENT" -o "$DEST/db-$TS.sqlite.gz.age" "/tmp/db-$TS.sqlite.gz"
+                  rm -f "/tmp/db-$TS.sqlite.gz"
+                  # uploady: spakowane i zaszyfrowane tym samym kluczem
+                  tar -C /data -cf - uploads | gzip | age -r "$AGE_RECIPIENT" -o "$DEST/uploads-$TS.tar.gz.age"
+                  # retencja lokalna; kopia offsite powstaje przez nocny pull z laptopa
+                  find "$DEST" -name '*.age' -type f -mtime "+$KEEP_DAYS" -delete
+                  ls -la "$DEST" | tail -5
+                  echo "backup OK $TS"
+                  [ -n "${HC_BACKUP_URL:-}" ] && curl -fsS -m 10 --retry 3 "$HC_BACKUP_URL" >/dev/null || true
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities: { drop: [ALL] }
+              resources:
+                limits: { memory: 256Mi }
+              volumeMounts:
+                - { name: data, mountPath: /data }
+                - { name: tmp, mountPath: /tmp }
+          volumes:
+            - name: data
+              persistentVolumeClaim: { claimName: pruvious-data }
+            - name: tmp
+              emptyDir: { sizeLimit: 2Gi }

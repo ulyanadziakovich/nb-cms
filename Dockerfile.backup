@@ -1,0 +1,15 @@
+# Obraz narzedziowy dla CronJoba backupujacego baze SQLite.
+# Zawiera tylko to, czego uzywa skrypt backupu: sqlite3 (.backup + integrity_check),
+# age (szyfrowanie kluczem publicznym), gzip (kompresja), curl (ping Healthchecks),
+# tzdata (poprawne znaczniki czasu w nazwach plikow).
+FROM alpine:3
+
+RUN apk add --no-cache sqlite age gzip curl tzdata
+
+# Ten sam uid co aplikacja (runAsUser 1000), zeby pliki na PVC mialy spojnego wlasciciela.
+RUN adduser -D -u 1000 backup
+
+USER 1000
+WORKDIR /data
+
+CMD ["sh", "-c", "echo 'Ten obraz oczekuje polecenia z CronJoba' >&2; exit 1"]
