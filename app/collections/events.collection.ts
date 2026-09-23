@@ -15,7 +15,7 @@ export default defineCollection({
     date: { type: 'text', options: { required: true, description: 'np. 14 czerwca 2026' } },
     time: { type: 'text', options: { required: true, description: 'np. 09:00' } },
     place: { type: 'text', options: { required: true } },
-    image: { type: 'text', options: { required: true, label: 'Zdjęcie (URL)' } },
+    image: { type: 'image', options: { required: true, label: 'Zdjęcie' } },
     freeEntry: { type: 'checkbox', options: { label: 'Wstęp wolny', default: true } },
     ticketsHref: { type: 'text', options: { required: false, label: 'Link do biletów (jeśli płatne)' } },
     tag: { type: 'text', options: { required: false, default: 'ogolne', description: 'ogolne / sport — do filtrowania na stronach' } },

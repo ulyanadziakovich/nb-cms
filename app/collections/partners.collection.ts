@@ -8,7 +8,7 @@ export default defineCollection({
   dashboard: { primaryField: 'name', overviewTable: { perPage: 50 } },
   fields: {
     name: { type: 'text', options: { required: true } },
-    logo: { type: 'text', options: { required: false, label: 'Logo (URL)' } },
+    logo: { type: 'image', options: { required: false, label: 'Logo' } },
     order: { type: 'number', options: { required: false, default: 0, label: 'Kolejność wyświetlania' } },
   },
 })

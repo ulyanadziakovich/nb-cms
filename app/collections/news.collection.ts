@@ -15,7 +15,7 @@ export default defineCollection({
     title: { type: 'text', options: { required: true } },
     date: { type: 'text', options: { required: true, description: 'np. 3 marca 2026' } },
     category: { type: 'text', options: { required: true, description: 'np. Rekrutacja, Relacja, Turystyka' } },
-    image: { type: 'text', options: { required: true, label: 'Zdjęcie (URL)' } },
+    image: { type: 'image', options: { required: true, label: 'Zdjęcie' } },
     excerpt: { type: 'text-area', options: { required: true, label: 'Zajawka', rows: 3 } },
     body: { type: 'text-area', options: { required: true, label: 'Treść (akapity oddzielone pustą linią)', rows: 8 } },
   },

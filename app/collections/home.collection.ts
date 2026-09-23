@@ -15,6 +15,6 @@ export default defineCollection({
     aboutParagraph1: { type: 'text-area', options: { required: true, rows: 3 } },
     aboutParagraph2: { type: 'text-area', options: { required: true, rows: 3 } },
     aboutTagline: { type: 'text', options: { required: false, default: '„SKUTECZNI DLA WAS”' } },
-    aboutImage: { type: 'text', options: { required: false, label: 'Zdjęcie (URL)', default: '/images/bieszczady.avif' } },
+    aboutImage: { type: 'image', options: { required: false, label: 'Zdjęcie' } },
   },
 })

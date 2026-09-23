@@ -13,7 +13,7 @@ export default defineCollection({
     title: { type: 'text', options: { required: true } },
     description: { type: 'text-area', options: { required: true, rows: 2 } },
     back: { type: 'text-area', options: { required: true, label: 'Tekst na odwrocie kafelka', rows: 3 } },
-    image: { type: 'text', options: { required: true, label: 'Zdjęcie (URL)' } },
+    image: { type: 'image', options: { required: true, label: 'Zdjęcie' } },
     moreHref: { type: 'text', options: { required: true, label: 'Link "Więcej"' } },
     order: { type: 'number', options: { required: false, default: 0, label: 'Kolejność wyświetlania' } },
   },
