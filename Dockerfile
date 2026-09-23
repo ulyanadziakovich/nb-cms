@@ -24,6 +24,11 @@ FROM node:24-bookworm-slim AS runtime
 
 WORKDIR /app
 
+# Runtime odpala `node .output/server/index.mjs` - npm nie jest potrzebny, a jego
+# wbudowane zaleznosci (m.in. brace-expansion) podbijaja wynik skanu CVE.
+# Usuniecie zmniejsza tez powierzchnie ataku w kontenerze.
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx
+
 # Nitro (preset node-server) tracuje zaleznosci przez @vercel/nft i kopiuje je
 # razem z plikami .node do .output/server/node_modules, wiec .output jest
 # samowystarczalny - nie kopiujemy reszty node_modules.
