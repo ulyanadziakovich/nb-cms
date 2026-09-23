@@ -1,0 +1,21 @@
+# Cotygodniowe aktualizacje zaleznosci: obrazy bazowe, akcje GitHub i pakiety npm.
+version: 2
+
+updates:
+  # Obrazy bazowe w Dockerfile i Dockerfile.backup
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+
+  # Akcje przypiete do SHA w .github/workflows - Dependabot podbija SHA i komentarz z wersja
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+
+  # Zaleznosci aplikacji (package.json / package-lock.json)
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly

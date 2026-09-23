@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: { name: pruvious-data, namespace: pruvious }
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: local-path
+  resources: { requests: { storage: 10Gi } }
+# Uwaga: local-path tworzy katalog na hoscie (/var/lib/rancher/k3s/storage/) i NIE egzekwuje
+# rozmiaru - realnym limitem jest wolne miejsce na dysku. Zajetosc pilnuje timer disk-check.

@@ -31,3 +31,9 @@ logs
 /public/uploads
 pruvious.db
 pruvious.db-journal
+
+# Sekrety i lokalne bazy danych (uzupelnienie wzorcow powyzej)
+*.key
+*.pem
+*.sqlite
+*.sqlite3
