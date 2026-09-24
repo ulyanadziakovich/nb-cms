@@ -3,7 +3,7 @@
 # ---------- stage: build ----------
 # Ten sam obraz bazowy w obu stage, zeby natywne bindingi (sqlite3, sharp, argon2)
 # skompilowane tutaj dzialaly bez zmian w runtime.
-FROM node:24-bookworm-slim AS build
+FROM node:25-bookworm-slim AS build
 
 # Toolchain dla `npm rebuild sqlite3 --build-from-source` z postinstall.
 RUN apt-get update \
@@ -28,7 +28,7 @@ RUN npm ci
 RUN npm run build
 
 # ---------- stage: runtime ----------
-FROM node:24-bookworm-slim AS runtime
+FROM node:25-bookworm-slim AS runtime
 
 WORKDIR /app
 
