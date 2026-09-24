@@ -5,6 +5,7 @@ export default defineCollection({
   mode: 'single',
   apiRoutes: { read: 'public' },
   fields: {
+    heroImage: { type: 'image', options: { required: false, label: 'Zdjęcie tła (hero)' } },
     heroKicker: { type: 'text', options: { required: false, default: 'Ustrzyki Dolne · Bieszczady' } },
     heroTitle: { type: 'text', options: { required: true, default: 'NOWOCZESNE BIESZCZADY' } },
     heroSubtitle: { type: 'text-area', options: { required: true, rows: 2, default: 'Tworzymy wydarzenia, konkursy i inicjatywy, które budują tożsamość regionu.' } },

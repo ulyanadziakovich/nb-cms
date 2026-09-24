@@ -5,6 +5,7 @@ export default defineCollection({
   mode: 'single',
   apiRoutes: { read: 'public' },
   fields: {
+    logo: { type: 'image', options: { required: false, label: 'Logo (ikona)' } },
     email: { type: 'text', options: { required: true, default: 'biuro@nowoczesnebieszczady.pl' } },
     phone: { type: 'text', options: { required: true, default: '507 068 728' } },
     address: { type: 'text', options: { required: true, default: 'Ustrzyki Dolne, woj. podkarpackie' } },
