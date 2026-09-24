@@ -29,7 +29,7 @@ spec:
       containers:
         - name: app
           image: ghcr.io/ulyanadziakovich/nb-cms:__IMAGE_TAG__
-          ports: [ { name: http, containerPort: 3000 } ]
+          ports: [ { name: nitro, containerPort: 3000 } ]
           env:
             - { name: NODE_ENV, value: production }
             - { name: NODE_OPTIONS, value: "--max-old-space-size=512" }
@@ -48,22 +48,46 @@ spec:
             limits: { memory: 768Mi }
           # UWAGA: "/" zwraca 404 na pustym CMS-ie, wiec probe pyta o endpoint statusu
           readinessProbe:
-            httpGet: { path: /api/installed, port: http }
+            httpGet: { path: /api/installed, port: nitro }
             initialDelaySeconds: 10
             periodSeconds: 10
           livenessProbe:
-            httpGet: { path: /api/installed, port: http }
+            httpGet: { path: /api/installed, port: nitro }
             initialDelaySeconds: 30
             periodSeconds: 20
             failureThreshold: 5
           volumeMounts:
             - { name: data, mountPath: /data }
             - { name: tmp, mountPath: /tmp }
+        # Sidecar: front poda. Serwuje /uploads z PVC (Pruvious w produkcji tego nie robi),
+        # reszte proxuje do Nitro na localhost:3000.
+        - name: uploads-proxy
+          image: nginxinc/nginx-unprivileged:1.30-alpine
+          ports: [ { name: http, containerPort: 8080 } ]
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ALL] }
+          resources:
+            requests: { cpu: 10m, memory: 16Mi }
+            limits: { memory: 64Mi }
+          readinessProbe:
+            httpGet: { path: /api/installed, port: http }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          volumeMounts:
+            - { name: data, mountPath: /data/uploads, subPath: uploads, readOnly: true }
+            - { name: nginx-conf, mountPath: /etc/nginx/nginx.conf, subPath: nginx.conf, readOnly: true }
+            - { name: nginx-tmp, mountPath: /tmp }
       volumes:
         - name: data
           persistentVolumeClaim: { claimName: pruvious-data }
         - name: tmp
           emptyDir: { sizeLimit: 256Mi }
+        - name: nginx-conf
+          configMap: { name: uploads-proxy }
+        - name: nginx-tmp
+          emptyDir: { sizeLimit: 128Mi }
 ---
 apiVersion: v1
 kind: Service
@@ -71,4 +95,4 @@ metadata: { name: pruvious, namespace: pruvious }
 spec:
   type: ClusterIP
   selector: { app: pruvious }
-  ports: [ { name: http, port: 3000, targetPort: http } ]
+  ports: [ { name: http, port: 3000, targetPort: 8080 } ]

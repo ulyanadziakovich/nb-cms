@@ -31,8 +31,9 @@ spec:
         - ipBlock: { cidr: 10.42.0.1/32 }
         - ipBlock: { cidr: 57.128.213.58/32 }
       ports:
-        - { protocol: TCP, port: 3000 }
-        - { protocol: TCP, port: 2000 }
+        - { protocol: TCP, port: 3000 }   # nitro
+        - { protocol: TCP, port: 8080 }   # sidecar nginx
+        - { protocol: TCP, port: 2000 }   # cloudflared /ready
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -42,7 +43,7 @@ spec:
   policyTypes: [Ingress]
   ingress:
     - from: [ { podSelector: { matchLabels: { app: cloudflared } } } ]
-      ports: [ { protocol: TCP, port: 3000 } ]
+      ports: [ { protocol: TCP, port: 8080 } ]
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -52,7 +53,7 @@ spec:
   policyTypes: [Egress]
   egress:
     - to: [ { podSelector: { matchLabels: { app: pruvious } } } ]
-      ports: [ { protocol: TCP, port: 3000 } ]
+      ports: [ { protocol: TCP, port: 8080 } ]
     - to:
         - ipBlock:
             cidr: 0.0.0.0/0
