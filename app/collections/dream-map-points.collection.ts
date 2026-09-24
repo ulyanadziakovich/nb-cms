@@ -50,5 +50,15 @@ export default defineCollection({
       type: 'number',
       options: { required: true, label: 'Pozycja Y (%)', decimals: 1, description: 'Pionowa pozycja gwiazdy na mapie, w % wysokości.' },
     },
+    votes: {
+      type: 'number',
+      options: {
+        required: false,
+        default: 0,
+        min: 0,
+        label: 'Głosy',
+        description: 'Liczba głosów oddanych na ten postulat. Zwiększana wyłącznie przez publiczny endpoint głosowania (server/api/dream-map-vote.post.ts) — nie przez ten formularz.',
+      },
+    },
   },
 })
