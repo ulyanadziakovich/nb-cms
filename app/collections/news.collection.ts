@@ -18,5 +18,6 @@ export default defineCollection({
     image: { type: 'image', options: { required: true, label: 'Zdjęcie' } },
     excerpt: { type: 'text-area', options: { required: true, label: 'Zajawka', rows: 3 } },
     body: { type: 'text-area', options: { required: true, label: 'Treść (akapity oddzielone pustą linią)', rows: 8 } },
+    gallery: { type: 'text-area', options: { required: false, label: 'Galeria (jeden URL na linię — plik wgrany osobno, wklej tu jego ścieżkę /uploads/...)', rows: 4 } },
   },
 })
