@@ -8,5 +8,6 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   fields: {
     heroImage: { type: 'image', options: { required: false, label: 'Zdjęcie tła (nocne niebo)' } },
+    aboutImage: { type: 'image', options: { required: false, label: 'Zdjęcie w sekcji "Skąd wzięła się ta mapa"' } },
   },
 })
