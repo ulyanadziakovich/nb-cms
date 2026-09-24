@@ -16,6 +16,14 @@ WORKDIR /app
 # ktory potrzebuje nuxt.config.ts i katalogu app/.
 COPY . .
 
+# WAZNE: Pruvious zapieka sciezke katalogu uploadow w opcjach modulu na etapie builda
+# (`uploadsDir` -> resolveRelativeAppPath). Zmienna srodowiskowa w runtime nadpisuje
+# tylko runtimeConfig, a zapis pliku i tak idzie do sciezki z builda. Dlatego ustawiamy
+# ja TUTAJ. W runtime kontener ma cwd=/app, wiec zapieczone '../data/uploads'
+# rozwiazuje sie do /data/uploads (PVC). To samo dotyczy page cache.
+ENV NUXT_PRUVIOUS_UPLOADS_DRIVE_PATH=/data/uploads \
+    NUXT_PRUVIOUS_PAGE_CACHE_PATH=/tmp/page-cache
+
 RUN npm ci
 RUN npm run build
 
