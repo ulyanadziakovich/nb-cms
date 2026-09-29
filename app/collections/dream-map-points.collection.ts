@@ -1,10 +1,12 @@
 import { defineCollection } from '#pruvious'
 
 /**
- * The 18 postulates behind the "Ustrzyki 2036: Cyfrowa Mapa Marzeń"
- * interactive page — one "star" per record. `pointNumber` (not the DB id)
- * is what the frontend's constellation-line map references, so it stays
- * stable no matter how records get reordered/recreated in the dashboard.
+ * Postulaty interaktywnej strony "Ustrzyki 2036: Cyfrowa Mapa Marzeń" —
+ * jeden rekord to jedna "gwiazda". `pointNumber` (a nie id z bazy) jest
+ * identyfikatorem, po którym rysowane są linie gwiazdozbioru, więc zostaje
+ * stabilny niezależnie od kolejności czy odtwarzania rekordów w panelu.
+ * Krawędzie gwiazdozbioru trzyma pole `connectsTo`, a metadane kategorii
+ * (kolor, nazwa gwiazdozbioru, etykiety) kolekcja `dream-map-categories`.
  */
 export default defineCollection({
   name: 'dream-map-points',
@@ -22,7 +24,7 @@ export default defineCollection({
       options: {
         required: true,
         label: 'Numer punktu',
-        description: 'Stały numer punktu (1-18) — używany do rysowania linii gwiazdozbioru na mapie, nie zmieniaj bez potrzeby.',
+        description: 'Stały numer punktu — używany do rysowania linii gwiazdozbioru na mapie, nie zmieniaj bez potrzeby.',
       },
       additional: { unique: 'allLanguages', index: true },
     },
@@ -58,6 +60,14 @@ export default defineCollection({
         min: 0,
         label: 'Głosy',
         description: 'Liczba głosów oddanych na ten postulat. Zwiększana wyłącznie przez publiczny endpoint głosowania (server/api/dream-map-vote.post.ts) — nie przez ten formularz.',
+      },
+    },
+    connectsTo: {
+      type: 'text',
+      options: {
+        required: false,
+        label: 'Połączenia gwiazdozbioru',
+        description: 'Lista numerów punktów rozdzielona przecinkami, do których prowadzi linia z tego punktu, np. 4, 8. Puste = brak linii wychodzących.',
       },
     },
   },
