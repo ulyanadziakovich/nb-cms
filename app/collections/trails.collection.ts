@@ -32,6 +32,20 @@ export default defineCollection({
 
     // --- Rozszerzone informacje o trasie (z opisu audytowego) ---
     gpxFile: { type: 'text', options: { required: false, label: 'Plik GPX (URL)', description: 'np. /gpx/nazwa-trasy.gpx' } },
+    // Docelowe miejsce na plik GPX: wgrywasz go do mediów i wybierasz tutaj.
+    // Starsze pole tekstowe `gpxFile` zostaje na czas migracji treści, bo
+    // wszystkie obecne trasy wskazują jeszcze pliki leżące w repo frontendu.
+    // `allowedTypes` sprawdza MIME ALBO rozszerzenie (alternatywa, nie koniunkcja),
+    // więc '.gpx' przepuszcza plik nawet gdy przeglądarka poda pusty lub nietypowy MIME.
+    gpxUpload: {
+      type: 'file',
+      options: {
+        required: false,
+        label: 'Plik GPX (media)',
+        allowedTypes: ['.gpx', 'application/gpx+xml', 'application/xml', 'text/xml'],
+        description: 'Docelowe miejsce na plik GPX trasy — wgraj plik do mediów i wybierz go tutaj. Pole tekstowe „Plik GPX (URL)” powyżej zostaje tymczasowo, do czasu przeniesienia wszystkich tras.',
+      },
+    },
     startFinish: { type: 'text', options: { required: false, label: 'Punkt startu / mety' } },
     routeCharacter: { type: 'text', options: { required: false, label: 'Charakter trasy', description: 'np. pętla, tam i z powrotem' } },
     recommendedBike: { type: 'text', options: { required: false, label: 'Rekomendowany rower (opis)', description: 'np. gravel / trekking / MTB' } },

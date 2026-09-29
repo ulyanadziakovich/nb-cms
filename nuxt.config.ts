@@ -23,6 +23,10 @@ export default defineNuxtConfig({
         type: 'local',
         path: process.env.NUXT_PRUVIOUS_UPLOADS_DRIVE_PATH ?? './.uploads',
       },
+      // Limit ustawiony jawnie, zeby byl widoczny w konfiguracji, a nie ukryty
+      // w domyslnych wartosciach modulu (Pruvious sam z siebie tez daje 16 MB).
+      // Z zapasem starcza na pliki GPX tras (najwieksze maja ok. 280 KB).
+      maxFileSize: '16 MB',
     },
     pageCache: {
       type: 'local',
