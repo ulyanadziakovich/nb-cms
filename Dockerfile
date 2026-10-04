@@ -30,6 +30,13 @@ RUN npm run build
 # ---------- stage: runtime ----------
 FROM node:24-bookworm-slim AS runtime
 
+# Debian wydaje poprawki bezpieczenstwa (np. libpcre2, CVE-2026-103111) po
+# publikacji obrazu bazowego - bez upgrade'u slim obraz dziedziczy stare CVE
+# i skan Trivy w CI blokuje build.
+RUN apt-get update \
+  && apt-get upgrade -y \
+  && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 # Runtime odpala `node .output/server/index.mjs` - npm nie jest potrzebny, a jego
