@@ -3,6 +3,7 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'site-settings',
   mode: 'single',
+  label: { collection: { plural: 'ustawienia strony', singular: 'ustawienia strony' } },
   apiRoutes: { read: 'public' },
   fields: {
     logo: { type: 'image', options: { required: false, label: 'Logo (ikona)' } },

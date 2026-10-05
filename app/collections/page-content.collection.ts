@@ -8,6 +8,7 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'page-content',
   mode: 'multi',
+  label: { collection: { plural: 'teksty na stronach', singular: 'tekst na stronie' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
   search: { default: ['key', 'title'] },

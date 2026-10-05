@@ -3,9 +3,10 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'peaks',
   mode: 'multi',
+  label: { collection: { plural: 'korona Gór — szczyty', singular: 'szczyt Korony Gór' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
-  dashboard: { primaryField: 'name', overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 50 } },
+  dashboard: { primaryField: 'name', overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 } },
   fields: {
     name: { type: 'text', options: { required: true } },
     elevation: { type: 'number', options: { required: true, label: 'Wysokość (m n.p.m.)' } },

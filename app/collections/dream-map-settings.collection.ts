@@ -5,6 +5,7 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'dream-map-settings',
   mode: 'single',
+  label: { collection: { plural: 'mapa Marzeń — ustawienia', singular: 'ustawienia Mapy Marzeń' } },
   apiRoutes: { read: 'public' },
   fields: {
     heroImage: { type: 'image', options: { required: false, label: 'Zdjęcie tła (nocne niebo)' } },

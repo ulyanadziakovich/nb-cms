@@ -3,11 +3,12 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'flagship-tiles',
   mode: 'multi',
+  label: { collection: { plural: 'kafelki flagowe (strona główna)', singular: 'kafelek flagowy' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
   dashboard: {
     primaryField: 'title',
-    overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 25 },
+    overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 },
   },
   fields: {
     title: { type: 'text', options: { required: true } },

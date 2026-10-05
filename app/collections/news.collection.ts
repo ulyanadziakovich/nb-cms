@@ -3,12 +3,13 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'news',
   mode: 'multi',
+  label: { collection: { plural: 'aktualności', singular: 'aktualność' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
   search: { default: [{ field: 'title', reserve: 30 }, 'excerpt'] },
   dashboard: {
     primaryField: 'title',
-    overviewTable: { sort: { field: 'date', direction: 'desc' }, perPage: 25 },
+    overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 },
   },
   fields: {
     slug: { type: 'text', options: { required: true, description: 'Unikalny identyfikator w adresie URL' } },
@@ -19,5 +20,6 @@ export default defineCollection({
     excerpt: { type: 'text-area', options: { required: true, label: 'Zajawka', rows: 3 } },
     body: { type: 'text-area', options: { required: true, label: 'Treść (akapity oddzielone pustą linią)', rows: 8 } },
     gallery: { type: 'text-area', options: { required: false, label: 'Galeria (jeden URL na linię — plik wgrany osobno, wklej tu jego ścieżkę /uploads/...)', rows: 4 } },
+    order: { type: 'number', options: { required: false, default: 0, label: 'Kolejność', description: 'Ustawiana przeciąganiem na liście (uchwyt ⠿).' } },
   },
 })

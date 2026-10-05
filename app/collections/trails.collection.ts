@@ -3,16 +3,25 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'trails',
   mode: 'multi',
+  label: { collection: { plural: 'trasy rowerowe', singular: 'trasa rowerowa' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
   search: { default: [{ field: 'title', reserve: 30 }, 'teaser'] },
   dashboard: {
     primaryField: 'title',
-    overviewTable: { sort: { field: 'title', direction: 'asc' }, perPage: 25 },
+    overviewTable: { columns: ['title', { field: 'active', width: 18 }, 'difficulty', 'lengthKm'], sort: { field: 'order', direction: 'asc' }, perPage: 100 },
   },
   fields: {
     slug: { type: 'text', options: { required: true, description: 'Unikalny identyfikator w adresie URL, np. dolina-san-ustrzyki' } },
     title: { type: 'text', options: { required: true } },
+    active: {
+      type: 'checkbox',
+      options: {
+        label: 'Aktywna (widoczna na stronie)',
+        description: 'Odznaczona = trasa ukryta: nie ma jej na liście tras, na mapie ani pod swoim adresem.',
+        default: false,
+      },
+    },
     difficulty: { type: 'text', options: { required: true, description: 'latwa / srednia / trudna' } },
     bikeTypes: { type: 'text', options: { required: true, description: 'Oddzielone przecinkami: mtb, gravel, e-bike, szosa' } },
     lengthKm: { type: 'number', options: { required: true, label: 'Długość (km)', decimals: 1 } },
@@ -63,5 +72,6 @@ export default defineCollection({
     touristInfo: { type: 'text-area', options: { required: false, label: 'Informacje turystyczne', rows: 5 } },
     finalRecommendation: { type: 'text-area', options: { required: false, label: 'Rekomendacja końcowa', rows: 4 } },
     auditNotes: { type: 'text-area', options: { required: false, label: 'Uwagi audytowe / źródło (wewnętrzne)', rows: 5 } },
+    order: { type: 'number', options: { required: false, default: 0, label: 'Kolejność', description: 'Ustawiana przeciąganiem na liście (uchwyt ⠿).' } },
   },
 })

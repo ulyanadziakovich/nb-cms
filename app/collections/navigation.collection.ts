@@ -17,6 +17,7 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'navigation',
   mode: 'multi',
+  label: { collection: { plural: 'menu strony', singular: 'pozycja menu' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
   search: { default: ['key', 'label'] },

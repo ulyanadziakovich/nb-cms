@@ -17,6 +17,12 @@ export default defineNuxtConfig({
   // read-only (readOnlyRootFilesystem: true) - jedyne zapisywalne miejsca to
   // wolumen /data i /tmp. Fallbacki zachowuja dotychczasowe zachowanie deva.
   pruvious: {
+    // Lista rekordów w panelu z przeciąganiem kolejności (kopia komponentu Pruvious).
+    dashboard: {
+      baseComponents: {
+        misc: { MultiCollectionsOverview: './app/dashboard/MultiCollectionsOverview.vue' },
+      },
+    },
     database: process.env.NUXT_PRUVIOUS_DATABASE ?? 'sqlite:./pruvious.db',
     uploads: {
       drive: {

@@ -11,12 +11,13 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'dream-map-categories',
   mode: 'multi',
+  label: { collection: { plural: 'mapa Marzeń — kategorie', singular: 'kategoria Mapy Marzeń' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
   search: { default: ['slug', 'label'] },
   dashboard: {
     primaryField: 'label',
-    overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 25 },
+    overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 },
   },
   fields: {
     slug: {

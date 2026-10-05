@@ -11,6 +11,7 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'dream-map-points',
   mode: 'multi',
+  label: { collection: { plural: 'mapa Marzeń — pomysły', singular: 'pomysł Mapy Marzeń' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
   search: { default: [{ field: 'title', reserve: 30 }] },

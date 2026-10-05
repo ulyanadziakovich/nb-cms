@@ -3,6 +3,7 @@ import { defineCollection } from '#pruvious'
 export default defineCollection({
   name: 'home',
   mode: 'single',
+  label: { collection: { plural: 'strona główna', singular: 'strona główna' } },
   apiRoutes: { read: 'public' },
   fields: {
     heroImage: { type: 'image', options: { required: false, label: 'Zdjęcie tła (hero)' } },
