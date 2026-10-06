@@ -22,8 +22,35 @@ export default defineCollection({
       options: { required: true, description: 'Unikalny identyfikator bloku, np. home-hero-title, kultura-intro' },
       additional: { unique: 'allLanguages', index: true },
     },
-    title: { type: 'text', options: { required: false, label: 'Tytuł / nagłówek (opcjonalnie)' } },
-    body: { type: 'text-area', options: { required: false, label: 'Treść (akapity oddzielone pustą linią)', rows: 5 } },
+    title: {
+      type: 'text',
+      options: {
+        required: false,
+        label: 'Tytuł strony / nagłówek',
+        description: 'Przy blokach „…-hero-description” to duży tytuł na górze podstrony.',
+      },
+    },
+    content: {
+      type: 'editor',
+      options: {
+        required: false,
+        label: 'Opis sformatowany (akapity, śródtytuły, linki, listy)',
+        description: [
+          'Jeśli to pole jest wypełnione, strona pokazuje je zamiast „Zwykłego tekstu” poniżej.',
+          'Enter = nowy akapit. Zaznacz tekst, aby dodać link, pogrubienie lub śródtytuł.',
+        ],
+        toolbar: ['heading2', 'heading3', 'paragraph', 'bold', 'italic', 'link', 'bulletList', 'orderedList', 'blockquote', 'clear', 'undo', 'redo'],
+      },
+    },
+    body: {
+      type: 'text-area',
+      options: {
+        required: false,
+        label: 'Zwykły tekst',
+        description: 'Akapity oddzielone pustą linią. Przy listach i statystykach: jedna pozycja w linii.',
+        rows: 5,
+      },
+    },
     image: { type: 'text', options: { required: false, label: 'Zdjęcie (URL, opcjonalnie)' } },
   },
 })
