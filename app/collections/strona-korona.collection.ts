@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Mountain",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statPeaks","pageTitle"],"Pasek z liczbami":["barPeaksLabel","stats"],"Szczyty":["peaksKicker","peaksTitle","peaksLead","peakElevation","peakTower"],"Wydarzenia sportowe":["eventsKicker","eventsTitle","eventFree","eventMore","eventTickets"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statPeaks","pageTitle"],"Pasek z liczbami":["barPeaksLabel","stats"],"Szczyty":["peaksKicker","peaksTitle","peaksLead","peakElevation","peakTower"],"Wydarzenia sportowe":["eventsKicker","eventsTitle"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
   },
   fields: {
     heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Turystyka górska"} },
@@ -25,11 +25,8 @@ export default defineCollection({
     peaksLead: { type: 'text-area', options: {"required":false,"label":"Opis","default":"Trasa prowadzi kolejno przez pięć wzniesień — zdobycie wszystkich w ramach jednej pętli można potwierdzić pieczątką w Punkcie Informacji Turystycznej w Ustrzykach Dolnych.","rows":3} },
     peakElevation: { type: 'text', options: {"required":false,"label":"Wysokość szczytu","description":"Strona sama wstawi wysokość w miejsce {liczba}.","default":"{liczba} m n.p.m."} },
     peakTower: { type: 'text', options: {"required":false,"label":"Oznaczenie wieży","default":"Wieża widokowa"} },
-    eventsKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Wydarzenia sportowe"} },
+    eventsKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","description":"Sekcja pokazuje aktualności, przy których zaznaczono „Korona Ustrzyckich Gór” w polu „Pokaż także na podstronach”.","default":"Wydarzenia sportowe"} },
     eventsTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Rajdy i mecze terenowe"} },
-    eventFree: { type: 'text', options: {"required":false,"label":"Oznaczenie bezpłatnego wydarzenia","default":"Wstęp wolny"} },
-    eventMore: { type: 'text', options: {"required":false,"label":"Przycisk „Więcej”","default":"Więcej"} },
-    eventTickets: { type: 'text', options: {"required":false,"label":"Przycisk biletów","default":"Bilety"} },
     themeBackground: { type: 'color', options: {"required":false,"label":"Tło strony","description":"Tło całej treści tej podstrony.","default":""} },
     themeHero: { type: 'color', options: {"required":false,"label":"Tło nagłówka","description":"Tło górnej części z tytułem podstrony.","default":""} },
     themeTitle: { type: 'color', options: {"required":false,"label":"Tytuły i nagłówki","description":"Tytuł podstrony, tytuły sekcji i kart.","default":""} },

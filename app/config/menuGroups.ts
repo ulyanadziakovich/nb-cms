@@ -55,7 +55,6 @@ export const MENU_GROUPS: MenuGroup[] = [
     ],
   },
   { label: 'Kontakt', items: [{ collection: 'strona-kontakt', label: 'Teksty strony' }] },
-  { label: 'Wydarzenia', items: [{ collection: 'events', label: 'Wydarzenia' }] },
   {
     label: 'Ustawienia strony',
     items: [

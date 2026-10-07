@@ -265,11 +265,8 @@ export default [
         peakTower: text('Oznaczenie wieży', 'Wieża widokowa'),
       },
       'Wydarzenia sportowe': {
-        eventsKicker: text('Napis nad tytułem', 'Wydarzenia sportowe'),
+        eventsKicker: text('Napis nad tytułem', 'Wydarzenia sportowe', 'Sekcja pokazuje aktualności, przy których zaznaczono „Korona Ustrzyckich Gór” w polu „Pokaż także na podstronach”.'),
         eventsTitle: text('Tytuł', 'Rajdy i mecze terenowe'),
-        eventFree: text('Oznaczenie bezpłatnego wydarzenia', 'Wstęp wolny'),
-        eventMore: text('Przycisk „Więcej”', 'Więcej'),
-        eventTickets: text('Przycisk biletów', 'Bilety'),
       },
     },
   },
