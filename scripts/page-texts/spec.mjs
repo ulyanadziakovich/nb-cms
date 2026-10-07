@@ -398,6 +398,11 @@ export default [
       'Dane kontaktowe': {
         infoTitle: text('Nagłówek danych', 'Stowarzyszenie Nowoczesne Bieszczady'),
         socialTitle: text('Nagłówek mediów społecznościowych', 'Social media'),
+        infoText: area('Tekst pod nagłówkiem', 'Najszybciej skontaktujesz się z nami mailowo lub telefonicznie. Chętnie porozmawiamy o współpracy, projektach i wydarzeniach.', undefined, 2),
+        labelEmail: text('Podpis: e-mail', 'E-mail'),
+        labelPhone: text('Podpis: telefon', 'Telefon'),
+        labelAddress: text('Podpis: adres', 'Adres'),
+        formNote: text('Notka pod przyciskiem formularza', 'Odpowiadamy zwykle w ciągu 48 godzin.'),
       },
     },
   },
