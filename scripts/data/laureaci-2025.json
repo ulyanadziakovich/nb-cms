@@ -1,0 +1,167 @@
+{
+ "contestTitleContains": "Fotograficzny",
+ "laureatesTitle": "Laureaci III edycji (2025)",
+ "source": "Lista laureatów (docx) + dyplomy z gali 13.12.2025 (KF_SNB_2025_laureaci.pdf). Miejsca Modliszka/Zaskroniec wg dyplomów (lista w docx miała je zamienione).",
+ "laureates": [
+  {
+   "image": {
+    "uploadId": 1501,
+    "alt": "Poranny lot — Daniel Szczerba"
+   },
+   "title": "Poranny lot",
+   "author": "Daniel Szczerba",
+   "category": "Bieszczady z lotu ptaka",
+   "award": "i-miejsce"
+  },
+  {
+   "image": {
+    "uploadId": 1502,
+    "alt": "Jesienne zatoki na Jeziorze Solińskim — Adrian Orłowski"
+   },
+   "title": "Jesienne zatoki na Jeziorze Solińskim",
+   "author": "Adrian Orłowski",
+   "category": "Bieszczady z lotu ptaka",
+   "award": "wyroznienie"
+  },
+  {
+   "image": {
+    "uploadId": 1505,
+    "alt": "Modliszka — Jerzy Kościjanczuk"
+   },
+   "title": "Modliszka",
+   "author": "Jerzy Kościjanczuk",
+   "category": "Zwierzęta",
+   "award": "i-miejsce"
+  },
+  {
+   "image": {
+    "uploadId": 1504,
+    "alt": "Ognisty smok – salamandra w okolicach Wetliny — Paweł Wrona"
+   },
+   "title": "Ognisty smok – salamandra w okolicach Wetliny",
+   "author": "Paweł Wrona",
+   "category": "Zwierzęta",
+   "award": "ii-miejsce"
+  },
+  {
+   "image": {
+    "uploadId": 1503,
+    "alt": "Zaskroniec — Jerzy Kościjanczuk"
+   },
+   "title": "Zaskroniec",
+   "author": "Jerzy Kościjanczuk",
+   "category": "Zwierzęta",
+   "award": "iii-miejsce"
+  },
+  {
+   "image": {
+    "uploadId": 1506,
+    "alt": "Traszka górska spotkana na drodze z płyt w Sokolikach — Paweł Wrona"
+   },
+   "title": "Traszka górska spotkana na drodze z płyt w Sokolikach",
+   "author": "Paweł Wrona",
+   "category": "Zwierzęta",
+   "award": "wyroznienie"
+  },
+  {
+   "image": {
+    "uploadId": 1507,
+    "alt": "Puszczyk uralski w okolicach Mucznego — Patrycja Wąsikowska"
+   },
+   "title": "Puszczyk uralski w okolicach Mucznego",
+   "author": "Patrycja Wąsikowska",
+   "category": "Zwierzęta",
+   "award": "wyroznienie"
+  },
+  {
+   "image": {
+    "uploadId": 1508,
+    "alt": "Połonina Wetlińska – zimowa Chatka Puchatka — Mirosław Pruchnicki"
+   },
+   "title": "Połonina Wetlińska – zimowa Chatka Puchatka",
+   "author": "Mirosław Pruchnicki",
+   "category": "Krajobrazy",
+   "award": "i-miejsce"
+  },
+  {
+   "image": {
+    "uploadId": 1509,
+    "alt": "Wieczorynka bieszczadzka — Piotr Lisowski"
+   },
+   "title": "Wieczorynka bieszczadzka",
+   "author": "Piotr Lisowski",
+   "category": "Krajobrazy",
+   "award": "ii-miejsce"
+  },
+  {
+   "image": {
+    "uploadId": 1510,
+    "alt": "Połonina Wetlińska o zachodzie słońca — Dobiesław Kokoć"
+   },
+   "title": "Połonina Wetlińska o zachodzie słońca",
+   "author": "Dobiesław Kokoć",
+   "category": "Krajobrazy",
+   "award": "iii-miejsce"
+  },
+  {
+   "image": {
+    "uploadId": 1511,
+    "alt": "Ustjanowa – zima na Holicy — Mirosław Pruchnicki"
+   },
+   "title": "Ustjanowa – zima na Holicy",
+   "author": "Mirosław Pruchnicki",
+   "category": "Krajobrazy",
+   "award": "wyroznienie"
+  },
+  {
+   "image": {
+    "uploadId": 1512,
+    "alt": "„Tak wygląda moja miasto nocą” – Ustrzyki Dolne z Holicy — Jacek Piecuch"
+   },
+   "title": "„Tak wygląda moja miasto nocą” – Ustrzyki Dolne z Holicy",
+   "author": "Jacek Piecuch",
+   "category": "Krajobrazy",
+   "award": "wyroznienie"
+  },
+  {
+   "image": {
+    "uploadId": 1513,
+    "alt": "Dotyk gwiazd — Paolo Pańszczyk"
+   },
+   "title": "Dotyk gwiazd",
+   "author": "Paolo Pańszczyk",
+   "category": "Krajobrazy",
+   "award": "wyroznienie"
+  },
+  {
+   "image": {
+    "uploadId": 1514,
+    "alt": "Połonina Caryńska — Dobiesław Kokoć"
+   },
+   "title": "Połonina Caryńska",
+   "author": "Dobiesław Kokoć",
+   "category": "Krajobrazy",
+   "award": "wyroznienie"
+  },
+  {
+   "image": {
+    "uploadId": 1515,
+    "alt": "Wschód słońca nad Bieszczadami – wieża na Żukowie — Piotr Oleszczuk"
+   },
+   "title": "Wschód słońca nad Bieszczadami – wieża na Żukowie",
+   "author": "Piotr Oleszczuk",
+   "category": "Krajobrazy",
+   "award": "wyroznienie"
+  },
+  {
+   "image": {
+    "uploadId": 1516,
+    "alt": "U bram piekieł – na wypale. — Józef Alberski"
+   },
+   "title": "U bram piekieł – na wypale.",
+   "author": "Józef Alberski",
+   "category": "Krajobrazy",
+   "award": "wyroznienie"
+  }
+ ]
+}
