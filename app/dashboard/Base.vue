@@ -195,22 +195,24 @@ const groupedMenu = computed(() => {
   const rest = dashboard.value.menu.filter((m) => !m.collection || !used.has(m.collection));
   return { groups, rest };
 });
-const openGroups = ref(new Set());
-try {
-  const saved = JSON.parse(localStorage.getItem("nb-menu-open") || "[]");
-  if (Array.isArray(saved)) openGroups.value = new Set(saved);
-} catch {}
+// Akordeon: otwarta jest tylko jedna grupa — ta, w której jest otwarta strona,
+// albo ostatnio kliknięta. Przejście gdzie indziej zwija pozostałe.
+const openGroup = ref("");
+function activeGroupLabel() {
+  return groupedMenu.value.groups.find((group) => group.items.some(isActive))?.label ?? "";
+}
+watch(
+  () => route.fullPath,
+  () => {
+    openGroup.value = activeGroupLabel();
+  },
+  { immediate: true },
+);
 function isGroupOpen(group) {
-  return openGroups.value.has(group.label) || group.items.some(isActive);
+  return openGroup.value === group.label;
 }
 function toggleGroup(label) {
-  const next = new Set(openGroups.value);
-  if (next.has(label)) next.delete(label);
-  else next.add(label);
-  openGroups.value = next;
-  try {
-    localStorage.setItem("nb-menu-open", JSON.stringify([...next]));
-  } catch {}
+  openGroup.value = openGroup.value === label ? "" : label;
 }
 </script>
 
