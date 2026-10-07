@@ -6,6 +6,8 @@ export const editor = (label, def = '', hint) => ({ kind: 'editor', label, defau
 export const image = (label, hint) => ({ kind: 'image', label, hint })
 export const file = (label, hint) => ({ kind: 'file', label, hint })
 export const gallery = (label, hint, directory) => ({ kind: 'gallery', label, hint, directory })
+/** Lista powtarzalnych wpisów (np. osoby, partnerzy) — kolejność przeciąganiem. */
+export const repeater = (label, hint, addLabel, subfields) => ({ kind: 'repeater', label, hint, addLabel, subfields })
 export const link = (label, def = '', hint) => ({ kind: 'text', label, default: def, hint, link: true })
 export const color = (label, def, hint) => ({ kind: 'color', label, default: def, hint })
 

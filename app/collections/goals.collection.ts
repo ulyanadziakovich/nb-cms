@@ -6,7 +6,8 @@ export default defineCollection({
   label: { collection: { plural: 'cele stowarzyszenia', singular: 'cel stowarzyszenia' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
-  dashboard: { primaryField: 'title', overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 } },
+  // Ukryte w panelu: cele są teraz w formularzu „Strona: O nas”. Dane zostają jako kopia.
+  dashboard: { visible: false, primaryField: 'title', overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 } },
   fields: {
     title: { type: 'text', options: { required: true } },
     description: { type: 'text-area', options: { required: true, rows: 3 } },

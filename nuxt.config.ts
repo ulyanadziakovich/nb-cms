@@ -25,7 +25,11 @@ export default defineNuxtConfig({
     // Lista rekordów w panelu z przeciąganiem kolejności (kopia komponentu Pruvious).
     dashboard: {
       baseComponents: {
-        misc: { MultiCollectionsOverview: './app/dashboard/MultiCollectionsOverview.vue' },
+        misc: {
+          MultiCollectionsOverview: './app/dashboard/MultiCollectionsOverview.vue',
+          // Menu panelu pogrupowane według stron witryny (app/dashboard/menuGroups.ts).
+          Base: './app/dashboard/Base.vue',
+        },
       },
     },
     database: process.env.NUXT_PRUVIOUS_DATABASE ?? 'sqlite:./pruvious.db',

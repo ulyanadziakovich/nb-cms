@@ -39,6 +39,9 @@ function fieldSource(f) {
       return `{ type: 'image', options: ${JSON.stringify(opts)} }`
     case 'file':
       return `{ type: 'file', options: ${JSON.stringify(opts)} }`
+    case 'repeater':
+      opts.addLabel = f.addLabel
+      return `{ type: 'repeater', options: { ...${JSON.stringify(opts)}, subfields: ${JSON.stringify(f.subfields)} } }`
     case 'gallery':
       if (f.directory) opts.directory = f.directory
       return `{ type: 'gallery', options: ${JSON.stringify(opts)} }`

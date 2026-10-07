@@ -5,7 +5,7 @@
 // W tekstach można użyć znaczników, które strona podmienia sama:
 //   {liczba} — np. liczba wpisów, {min} / {max} — zakres, {rok} — bieżący rok.
 import { readFileSync } from 'node:fs'
-import { area, color, editor, file, gallery, image, link, text, textToHtml } from './fields.mjs'
+import { area, color, editor, file, gallery, image, link, repeater, text, textToHtml } from './fields.mjs'
 
 const snapshot = JSON.parse(readFileSync(new URL('./page-content-snapshot.json', import.meta.url), 'utf8'))
 const pc = (key) => snapshot[key] ?? { title: '', body: '', image: '' }
@@ -26,6 +26,16 @@ export default [
         heroSubtitle: area('Podtytuł', 'Tworzymy wydarzenia, konkursy i inicjatywy, które budują tożsamość regionu.', undefined, 2),
         heroCta: text('Napis na przycisku', 'Dowiedz się więcej'),
         heroCtaHref: link('Dokąd prowadzi przycisk', '/o-nas/misja'),
+      },
+      'Kafelki pod nagłówkiem': {
+        tiles: repeater('Kafelki', 'Trzy duże kafelki pod zdjęciem na stronie głównej. Kolejność zmienisz, przeciągając kafelki.', 'Dodaj kafelek', {
+          title: { type: 'text', options: { required: true, label: 'Tytuł' } },
+          text: { type: 'text-area', options: { required: false, label: 'Opis', rows: 3 } },
+          image: { type: 'image', options: { required: false, label: 'Zdjęcie' } },
+          tags: { type: 'text-area', options: { required: false, label: 'Etykiety', description: 'Jedna etykieta w linii, np. „Pliki GPX”.', rows: 2 } },
+          ctaLabel: { type: 'text', options: { required: false, label: 'Napis na przycisku', placeholder: 'np. Zobacz trasy' } },
+          href: { type: 'text', options: { required: false, label: 'Dokąd prowadzi kafelek', placeholder: 'np. /szlaki' } },
+        }),
       },
       'Krótko o nas': {
         aboutKicker: text('Napis nad tytułem', 'Stowarzyszenie'),
@@ -64,6 +74,9 @@ export default [
       },
       'Karty i przyciski': {
         readMore: text('„Czytaj więcej” na kartach wpisów', 'Czytaj więcej →'),
+        relatedKicker: text('Powiązane aktualności — napis nad tytułem', 'Aktualności'),
+        relatedTitle: text('Powiązane aktualności — tytuł', 'Powiązane aktualności', 'Sekcja na podstronach z wpisami, przy których zaznaczono „Pokaż także na podstronach”.'),
+        relatedAll: text('Powiązane aktualności — link do wszystkich', 'Zobacz wszystkie aktualności →'),
         siteName: text('Nazwa strony w karcie przeglądarki', 'Nowoczesne Bieszczady', 'Dopisywana po tytule podstrony, np. „Aktualności — Nowoczesne Bieszczady”.'),
       },
       Galerie: {
@@ -113,6 +126,7 @@ export default [
         statPostsFew: text('Licznik: 2–4 wpisy', '{liczba} opublikowane wpisy', COUNT),
         statPostsMany: text('Licznik: 5 i więcej wpisów', '{liczba} opublikowanych wpisów', COUNT),
         statExtra: text('Drugi napis pod tytułem', 'Aktualizowane na bieżąco'),
+        filterAll: text('Filtr kategorii: „wszystkie”', 'Wszystkie'),
         pageTitle: text('Tytuł w karcie przeglądarki', 'Aktualności'),
       },
       'Pojedynczy wpis': {
@@ -394,6 +408,10 @@ export default [
       Cele: {
         celeTitle: text('Tytuł', 'Cele Stowarzyszenia'),
         celeText: editor('Wstęp', html('cele-intro')),
+        goals: repeater('Cele', 'Kliknij „Dodaj cel”. Kolejność zmienisz, przeciągając wpisy.', 'Dodaj cel', {
+          title: { type: 'text', options: { required: true, label: 'Tytuł' } },
+          description: { type: 'text-area', options: { required: false, label: 'Opis', rows: 3 } },
+        }),
       },
       Statut: {
         statutTitle: text('Tytuł', 'Statut Stowarzyszenia'),
@@ -417,6 +435,11 @@ export default [
       'Zarząd i Zespół': {
         zarzadTitle: text('Tytuł', 'Zarząd i Zespół'),
         zarzadText: editor('Wstęp', html('zarzad-intro')),
+        team: repeater('Osoby', 'Kliknij „Dodaj osobę”. Kolejność zmienisz, przeciągając wpisy.', 'Dodaj osobę', {
+          name: { type: 'text', options: { required: true, label: 'Imię i nazwisko' } },
+          role: { type: 'text', options: { required: false, label: 'Funkcja', placeholder: 'np. Prezes Zarządu' } },
+          photo: { type: 'image', options: { required: false, label: 'Zdjęcie' } },
+        }),
       },
       Sprawozdania: {
         sprawozdaniaTitle: text('Tytuł', 'Sprawozdania i transparentność'),
@@ -427,6 +450,11 @@ export default [
       Partnerzy: {
         partnerzyTitle: text('Tytuł', 'Partnerzy i Grantodawcy'),
         partnerzyText: editor('Wstęp', html('partnerzy-intro')),
+        partners: repeater('Partnerzy i grantodawcy', 'Kliknij „Dodaj partnera”. Kolejność zmienisz, przeciągając wpisy.', 'Dodaj partnera', {
+          name: { type: 'text', options: { required: true, label: 'Nazwa' } },
+          logo: { type: 'image', options: { required: false, label: 'Logo' } },
+          url: { type: 'text', options: { required: false, label: 'Strona internetowa (opcjonalnie)', placeholder: 'https://…' } },
+        }),
       },
       Wolontariat: {
         wolontariatEmpty: area('Gdy opis wolontariatu jest pusty', 'Wkrótce zamieścimy tutaj informacje o wolontariacie w Stowarzyszeniu Nowoczesne Bieszczady.', 'Sam tytuł, opis i dokumenty edytujesz w formularzu „Wolontariat”.', 2),

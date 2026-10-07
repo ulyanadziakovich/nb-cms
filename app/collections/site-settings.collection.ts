@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Settings",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Kontakt":["logo","email","phone","address","facebookUrl","facebookLabel"],"Stopka":["footerTitle","footerTagline","footerDownloads","footerCopyright"],"Karty i przyciski":["readMore","siteName"],"Galerie":["galleryShowAll","gallerySwipe","galleryExpand","galleryCollapse"],"Wygląd strony":["colorTitle","colorLead","colorBody","colorExtra","colorAccent","colorBrand","colorInk","colorBackground","colorSection","colorEasy","colorMedium","colorHard"],"Trasy — nazwy":["difficultyEasy","difficultyMedium","difficultyHard","bikeMtb","bikeGravel","bikeEbike","bikeRoad","cardElevation"]}],
+    fieldLayout: [{"Kontakt":["logo","email","phone","address","facebookUrl","facebookLabel"],"Stopka":["footerTitle","footerTagline","footerDownloads","footerCopyright"],"Karty i przyciski":["readMore","relatedKicker","relatedTitle","relatedAll","siteName"],"Galerie":["galleryShowAll","gallerySwipe","galleryExpand","galleryCollapse"],"Wygląd strony":["colorTitle","colorLead","colorBody","colorExtra","colorAccent","colorBrand","colorInk","colorBackground","colorSection","colorEasy","colorMedium","colorHard"],"Trasy — nazwy":["difficultyEasy","difficultyMedium","difficultyHard","bikeMtb","bikeGravel","bikeEbike","bikeRoad","cardElevation"]}],
   },
   fields: {
     logo: { type: 'image', options: {"required":false,"label":"Logo (ikona)","description":"W nagłówku i stopce."} },
@@ -24,6 +24,9 @@ export default defineCollection({
     footerDownloads: { type: 'text', options: {"required":false,"label":"Nagłówek listy dokumentów","default":"Do pobrania"} },
     footerCopyright: { type: 'text', options: {"required":false,"label":"Prawa autorskie","description":"Strona sama wstawi bieżący rok w miejsce {rok}.","default":"© {rok} Nowoczesne Bieszczady. Wszystkie prawa zastrzeżone."} },
     readMore: { type: 'text', options: {"required":false,"label":"„Czytaj więcej” na kartach wpisów","default":"Czytaj więcej →"} },
+    relatedKicker: { type: 'text', options: {"required":false,"label":"Powiązane aktualności — napis nad tytułem","default":"Aktualności"} },
+    relatedTitle: { type: 'text', options: {"required":false,"label":"Powiązane aktualności — tytuł","description":"Sekcja na podstronach z wpisami, przy których zaznaczono „Pokaż także na podstronach”.","default":"Powiązane aktualności"} },
+    relatedAll: { type: 'text', options: {"required":false,"label":"Powiązane aktualności — link do wszystkich","default":"Zobacz wszystkie aktualności →"} },
     siteName: { type: 'text', options: {"required":false,"label":"Nazwa strony w karcie przeglądarki","description":"Dopisywana po tytule podstrony, np. „Aktualności — Nowoczesne Bieszczady”.","default":"Nowoczesne Bieszczady"} },
     galleryShowAll: { type: 'text', options: {"required":false,"label":"Na ostatnim kafelku mozaiki","default":"Zobacz wszystkie"} },
     gallerySwipe: { type: 'text', options: {"required":false,"label":"Podpowiedź na telefonie","default":"Przesuń, aby zobaczyć więcej →"} },

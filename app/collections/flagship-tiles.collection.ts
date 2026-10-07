@@ -6,7 +6,9 @@ export default defineCollection({
   label: { collection: { plural: 'kafelki flagowe (strona główna)', singular: 'kafelek flagowy' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
+  // Ukryte w panelu: przeniesione do formularza strony. Dane zostają jako kopia.
   dashboard: {
+    visible: false,
     primaryField: 'title',
     overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 },
   },

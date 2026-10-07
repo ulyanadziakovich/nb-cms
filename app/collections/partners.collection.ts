@@ -6,7 +6,8 @@ export default defineCollection({
   label: { collection: { plural: 'partnerzy', singular: 'partner' } },
   translatable: false,
   apiRoutes: { read: 'public', readMany: 'public' },
-  dashboard: { primaryField: 'name', overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 } },
+  // Ukryte w panelu: osoby/partnerzy są teraz w formularzu „Strona: O nas”. Dane zostają jako kopia.
+  dashboard: { visible: false, primaryField: 'name', overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 } },
   fields: {
     name: { type: 'text', options: { required: true } },
     logo: { type: 'image', options: { required: false, label: 'Logo' } },

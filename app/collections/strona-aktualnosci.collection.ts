@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "News",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statPostsOne","statPostsFew","statPostsMany","statExtra","pageTitle"],"Pojedynczy wpis":["galleryTitle","photosOne","photosFew","photosMany","backLink","notFound"]}],
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statPostsOne","statPostsFew","statPostsMany","statExtra","filterAll","pageTitle"],"Pojedynczy wpis":["galleryTitle","photosOne","photosFew","photosMany","backLink","notFound"]}],
   },
   fields: {
     heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Blog"} },
@@ -20,6 +20,7 @@ export default defineCollection({
     statPostsFew: { type: 'text', options: {"required":false,"label":"Licznik: 2–4 wpisy","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"{liczba} opublikowane wpisy"} },
     statPostsMany: { type: 'text', options: {"required":false,"label":"Licznik: 5 i więcej wpisów","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"{liczba} opublikowanych wpisów"} },
     statExtra: { type: 'text', options: {"required":false,"label":"Drugi napis pod tytułem","default":"Aktualizowane na bieżąco"} },
+    filterAll: { type: 'text', options: {"required":false,"label":"Filtr kategorii: „wszystkie”","default":"Wszystkie"} },
     pageTitle: { type: 'text', options: {"required":false,"label":"Tytuł w karcie przeglądarki","default":"Aktualności"} },
     galleryTitle: { type: 'text', options: {"required":false,"label":"Nagłówek galerii","default":"Galeria"} },
     photosOne: { type: 'text', options: {"required":false,"label":"Licznik: 1 zdjęcie","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"{liczba} zdjęcie"} },

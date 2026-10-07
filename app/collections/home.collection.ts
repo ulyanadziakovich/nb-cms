@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Home",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Nagłówek ze zdjęciem":["heroImage","heroKicker","heroTitle","heroSubtitle","heroCta","heroCtaHref"],"Krótko o nas":["aboutKicker","aboutTitle","aboutParagraph1","aboutParagraph2","aboutTagline","aboutImage"],"Najnowsze aktualności":["newsKicker","newsTitle","newsAllLink"]}],
+    fieldLayout: [{"Nagłówek ze zdjęciem":["heroImage","heroKicker","heroTitle","heroSubtitle","heroCta","heroCtaHref"],"Kafelki pod nagłówkiem":["tiles"],"Krótko o nas":["aboutKicker","aboutTitle","aboutParagraph1","aboutParagraph2","aboutTagline","aboutImage"],"Najnowsze aktualności":["newsKicker","newsTitle","newsAllLink"]}],
   },
   fields: {
     heroImage: { type: 'image', options: {"required":false,"label":"Zdjęcie tła","description":"Duże zdjęcie na samej górze strony głównej."} },
@@ -19,6 +19,7 @@ export default defineCollection({
     heroSubtitle: { type: 'text-area', options: {"required":false,"label":"Podtytuł","default":"Tworzymy wydarzenia, konkursy i inicjatywy, które budują tożsamość regionu.","rows":2} },
     heroCta: { type: 'text', options: {"required":false,"label":"Napis na przycisku","default":"Dowiedz się więcej"} },
     heroCtaHref: { type: 'text', options: {"required":false,"label":"Dokąd prowadzi przycisk","default":"/o-nas/misja","placeholder":"np. /aktualnosci albo https://…"} },
+    tiles: { type: 'repeater', options: { ...{"required":false,"label":"Kafelki","description":"Trzy duże kafelki pod zdjęciem na stronie głównej. Kolejność zmienisz, przeciągając kafelki.","addLabel":"Dodaj kafelek"}, subfields: {"title":{"type":"text","options":{"required":true,"label":"Tytuł"}},"text":{"type":"text-area","options":{"required":false,"label":"Opis","rows":3}},"image":{"type":"image","options":{"required":false,"label":"Zdjęcie"}},"tags":{"type":"text-area","options":{"required":false,"label":"Etykiety","description":"Jedna etykieta w linii, np. „Pliki GPX”.","rows":2}},"ctaLabel":{"type":"text","options":{"required":false,"label":"Napis na przycisku","placeholder":"np. Zobacz trasy"}},"href":{"type":"text","options":{"required":false,"label":"Dokąd prowadzi kafelek","placeholder":"np. /szlaki"}}} } },
     aboutKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Stowarzyszenie"} },
     aboutTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Krótko o nas"} },
     aboutParagraph1: { type: 'text-area', options: {"required":false,"label":"Tekst — część 1","description":"Pytanie na końcu linii (?) = śródtytuł, linia od emoji = karta „filaru”, linia z wcięciem = punkt w karcie.","rows":10} },
