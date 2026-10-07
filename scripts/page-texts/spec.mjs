@@ -457,7 +457,13 @@ export default [
         }),
       },
       Wolontariat: {
-        wolontariatEmpty: area('Gdy opis wolontariatu jest pusty', 'Wkrótce zamieścimy tutaj informacje o wolontariacie w Stowarzyszeniu Nowoczesne Bieszczady.', 'Sam tytuł, opis i dokumenty edytujesz w formularzu „Wolontariat”.', 2),
+        wolontariatTitle: text('Tytuł', 'Wolontariat'),
+        wolontariatText: editor('Opis', ''),
+        wolontariatDocs: repeater('Dokumenty do pobrania', 'Kliknij „Dodaj dokument”, wpisz nazwę i wgraj plik (np. PDF). Kolejność zmienisz, przeciągając wpisy.', 'Dodaj dokument', {
+          label: { type: 'text', options: { required: true, label: 'Nazwa dokumentu', placeholder: 'np. Porozumienie wolontariackie' } },
+          file: { type: 'file', options: { required: true, label: 'Plik' } },
+        }),
+        wolontariatEmpty: area('Gdy opis wolontariatu jest pusty', 'Wkrótce zamieścimy tutaj informacje o wolontariacie w Stowarzyszeniu Nowoczesne Bieszczady.', 'Pokazuje się, gdy opis powyżej jest pusty.', 2),
         wolontariatOpen: text('Przycisk przy dokumencie', 'Pobierz / zobacz'),
       },
     },

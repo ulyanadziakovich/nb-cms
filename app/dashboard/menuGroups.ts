@@ -50,9 +50,8 @@ export const MENU_GROUPS: MenuGroup[] = [
   {
     label: 'O nas',
     items: [
-      { collection: 'strona-o-nas', label: 'Teksty, osoby, partnerzy, cele' },
+      { collection: 'strona-o-nas', label: 'Teksty, osoby, partnerzy, cele, wolontariat' },
       { collection: 'reports', label: 'Sprawozdania' },
-      { collection: 'volunteering', label: 'Wolontariat' },
     ],
   },
   { label: 'Kontakt', items: [{ collection: 'strona-kontakt', label: 'Teksty strony' }] },

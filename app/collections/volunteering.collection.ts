@@ -10,7 +10,8 @@ export default defineCollection({
   mode: 'single',
   label: { collection: { plural: 'wolontariat', singular: 'wolontariat' } },
   translatable: false,
-  dashboard: { additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue' },
+  // Ukryte w panelu: wolontariat jest teraz w formularzu „Strona: O nas” (zakładka „Wolontariat”). Dane zostają jako kopia.
+  dashboard: { visible: false, additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue' },
   apiRoutes: { read: 'public' },
   fields: {
     title: { type: 'text', options: { required: true, label: 'Tytuł strony', default: 'Wolontariat' } },
