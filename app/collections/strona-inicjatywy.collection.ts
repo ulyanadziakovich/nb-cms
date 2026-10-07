@@ -9,6 +9,7 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: "Bulb",
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","stats","pageTitle"],"Bieszczady w eterze":["eterKicker","eterTitle","eterText","eterImage"],"Burza Mózgów":["burzaKicker","burzaTitle","burzaText","burzaImage"],"Ramka na dole":["noteKicker","noteTitle","noteText","noteButton"]}],
   },
   fields: {

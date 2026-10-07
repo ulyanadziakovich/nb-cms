@@ -9,6 +9,7 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: "Map",
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statTrailsOne","statTrailsFew","statTrailsMany","statLength","statLevels","pageTitle"],"Mapa tras":["mapKicker","mapTitle","mapLead","mapLoading","mapHint","mapError","mapPopupLink"],"Filtry i lista":["filterDifficulty","filterBike","filterAll","filterLength","filterReset","resultsOne","resultsFew","resultsMany","emptyText","emptyReset","cardCta"],"Ramka o projekcie":["noteKicker","noteText"]}],
   },
   fields: {

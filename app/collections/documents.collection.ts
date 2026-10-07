@@ -12,7 +12,8 @@ export default defineCollection({
   },
   fields: {
     label: { type: 'text', options: { required: true, description: 'np. Statut Stowarzyszenia (PDF)' } },
-    fileUrl: { type: 'text', options: { required: true, label: 'Plik (URL)' } },
+    file: { type: 'file', options: { required: false, label: 'Plik', description: 'Wgraj dokument (np. PDF) — link w stopce będzie go używał.' } },
+    fileUrl: { type: 'text', options: { required: false, label: 'Stary adres pliku — nie trzeba wypełniać', description: 'Używany tylko, gdy pole „Plik” jest puste.' } },
     order: { type: 'number', options: { required: false, default: 0, label: 'Kolejność wyświetlania' } },
   },
 })

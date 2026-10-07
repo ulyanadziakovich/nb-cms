@@ -9,6 +9,11 @@ export default defineNuxtConfig({
   devServer: { port: 4321 },
   modules: ["pruvious"],
 
+  // Adres strony, na którą prowadzi przycisk „Zobacz na stronie” w panelu.
+  runtimeConfig: {
+    public: { siteUrl: 'https://nowoczesnebieszczady.pl' },
+  },
+
   // pruvious.jwt.secretKey is intentionally NOT set here — Pruvious reads it from the
   // NUXT_PRUVIOUS_JWT_SECRET_KEY env var (see .env, which is gitignored) so the real
   // secret never gets committed to the repo.

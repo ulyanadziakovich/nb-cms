@@ -9,7 +9,8 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: "Users",
-    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","stats"],"Kim jesteśmy / Misja":["misjaTitle","misjaText","misjaPageTitle"],"Cele":["celeTitle","celeText"],"Statut":["statutTitle","statutText","statutFile","statutDownload","statutOpen","statutHint"],"Deklaracja":["deklaracjaTitle","deklaracjaText","deklaracjaFile","deklaracjaDownload","deklaracjaSoon","deklaracjaStep1","deklaracjaStep2","deklaracjaStep3"],"Zarząd i Zespół":["zarzadTitle","zarzadText"],"Sprawozdania":["sprawozdaniaTitle","sprawozdaniaText","sprawozdaniaDownload","sprawozdaniaSoon"],"Partnerzy":["partnerzyTitle","partnerzyText"],"Wolontariat":["wolontariatEmpty","wolontariatOpen"]}],
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","stats"],"Kim jesteśmy / Misja":["misjaTitle","misjaText","misjaPageTitle"],"Cele":["celeTitle","celeText"],"Statut":["statutTitle","statutText","statutFile","statutDownload","statutOpen","statutHint","statutPages"],"Deklaracja":["deklaracjaTitle","deklaracjaText","deklaracjaFile","deklaracjaDownload","deklaracjaSoon","deklaracjaStep1","deklaracjaStep2","deklaracjaStep3"],"Zarząd i Zespół":["zarzadTitle","zarzadText"],"Sprawozdania":["sprawozdaniaTitle","sprawozdaniaText","sprawozdaniaDownload","sprawozdaniaSoon"],"Partnerzy":["partnerzyTitle","partnerzyText"],"Wolontariat":["wolontariatEmpty","wolontariatOpen"]}],
   },
   fields: {
     heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Stowarzyszenie"} },
@@ -27,6 +28,7 @@ export default defineCollection({
     statutDownload: { type: 'text', options: {"required":false,"label":"Przycisk pobierania","default":"Pobierz Statut (PDF)"} },
     statutOpen: { type: 'text', options: {"required":false,"label":"Przycisk otwierania","default":"Otwórz w nowej karcie"} },
     statutHint: { type: 'text', options: {"required":false,"label":"Podpowiedź nad stronami","default":"Kliknij stronę, żeby ją powiększyć."} },
+    statutPages: { type: 'gallery', options: {"required":false,"label":"Strony statutu (zdjęcia)","description":"Zdjęcia kolejnych stron statutu — przeciągnij, aby ustawić kolejność.","directory":"o-nas/statut/"} },
     deklaracjaTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Deklaracja członkowska"} },
     deklaracjaText: { type: 'editor', options: {"required":false,"label":"Wstęp","default":"<p>Chcesz dołączyć do Stowarzyszenia Nowoczesne Bieszczady? Pobierz i wypełnij deklarację członkowską, a następnie dostarcz ją osobiście lub prześlij skan na adres e-mail biura stowarzyszenia.</p>","toolbar":["heading2","heading3","paragraph","bold","italic","link","bulletList","orderedList","blockquote","clear","undo","redo"]} },
     deklaracjaFile: { type: 'file', options: {"required":false,"label":"Plik deklaracji (PDF)","description":"Gdy plik jest wgrany, pokazuje się przycisk pobierania."} },

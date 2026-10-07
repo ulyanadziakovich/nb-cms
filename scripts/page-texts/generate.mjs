@@ -26,9 +26,7 @@ function fieldSource(f) {
       return `{ type: 'text', options: ${JSON.stringify(opts)} }`
     case 'color':
       opts.default = f.default
-      opts.placeholder = f.default
-      opts.description = [f.hint, 'Kolor w zapisie #RRGGBB, np. ' + f.default + '. Wyczyść pole, aby wrócić do domyślnego.'].filter(Boolean)
-      return `{ type: 'text', options: ${JSON.stringify(opts)} }`
+      return `{ type: 'color', options: ${JSON.stringify(opts)} }`
     case 'area':
       if (f.default) opts.default = f.default
       opts.rows = f.rows ?? 3
@@ -41,6 +39,9 @@ function fieldSource(f) {
       return `{ type: 'image', options: ${JSON.stringify(opts)} }`
     case 'file':
       return `{ type: 'file', options: ${JSON.stringify(opts)} }`
+    case 'gallery':
+      if (f.directory) opts.directory = f.directory
+      return `{ type: 'gallery', options: ${JSON.stringify(opts)} }`
     default:
       throw new Error(`Nieznany typ pola: ${f.kind}`)
   }
@@ -69,6 +70,7 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: ${q(page.icon ?? 'File')},
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     fieldLayout: [${JSON.stringify(layout)}],
   },
   fields: {

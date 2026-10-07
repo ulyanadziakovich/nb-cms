@@ -9,6 +9,7 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: "Mail",
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","stats","pageTitle"],"Formularz":["formTitle","formSuccess","formName","formNamePlaceholder","formEmail","formEmailPlaceholder","formMessage","formMessagePlaceholder","formSubmit"],"Dane kontaktowe":["infoTitle","socialTitle"]}],
   },
   fields: {

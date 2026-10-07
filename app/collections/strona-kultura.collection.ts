@@ -9,6 +9,7 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: "Photo",
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statEditions","statContests","statExtra","pageTitle"],"Pasek z liczbami":["barEditionsLabel","barContestsLabel","stats"],"Festiwal":["festivalKicker","festivalTitle","festivalLead","editionNewest","editionLink","announcementImage","announcementBadge","announcementText","upcomingKicker","upcomingTitle","upcomingText","upcomingButton"],"Konkursy":["contestsKicker","contestsTitle","documentsTitle","documentPreview","documentDownload","contestsLink"],"Strona edycji":["editionKicker","editionBack","editionNotFound"]}],
   },
   fields: {

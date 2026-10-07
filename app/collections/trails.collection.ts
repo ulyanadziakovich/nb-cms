@@ -8,6 +8,7 @@ export default defineCollection({
   apiRoutes: { read: 'public', readMany: 'public' },
   search: { default: [{ field: 'title', reserve: 30 }, 'teaser'] },
   dashboard: {
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     primaryField: 'title',
     overviewTable: { columns: ['title', { field: 'active', width: 18 }, 'difficulty', 'lengthKm'], sort: { field: 'order', direction: 'asc' }, perPage: 100 },
   },
@@ -36,11 +37,12 @@ export default defineCollection({
     highlights: { type: 'text-area', options: { required: false, label: 'Co warto zobaczyć (jedna pozycja na linię)', rows: 4 } },
     stops: { type: 'text-area', options: { required: false, label: 'Miejsca odpoczynku / gastronomia (jedna pozycja na linię)', rows: 4 } },
     safety: { type: 'text-area', options: { required: false, label: 'Bezpieczeństwo (jedna pozycja na linię)', rows: 4 } },
-    gallery: { type: 'text-area', options: { required: false, label: 'Galeria (jeden URL na linię — plik wgrany osobno, wklej tu jego ścieżkę /uploads/...)', rows: 3 } },
+    photos: { type: 'gallery', options: { label: 'Zdjęcia (galeria)', description: 'Wgraj wiele zdjęć naraz albo dodaj z biblioteki mediów. Kolejność zmieniasz przeciąganiem.', directory: 'trails/galerie/' } },
+    gallery: { type: 'text-area', options: { required: false, label: 'Stara galeria (adresy) — nie używać', description: 'Zastąpiona polem „Zdjęcia (galeria)” powyżej. Zostaje tylko jako kopia zapasowa.', rows: 3 } },
     gpxAvailable: { type: 'checkbox', options: { label: 'Plik GPX dostępny', default: false } },
 
     // --- Rozszerzone informacje o trasie (z opisu audytowego) ---
-    gpxFile: { type: 'text', options: { required: false, label: 'Plik GPX (URL)', description: 'np. /gpx/nazwa-trasy.gpx' } },
+    gpxFile: { type: 'text', options: { required: false, label: 'Stary adres pliku GPX — nie trzeba wypełniać', description: 'Strona używa pliku z pola „Plik GPX” (upload). To pole zostaje tylko jako kopia zapasowa.' } },
     // Docelowe miejsce na plik GPX: wgrywasz go do mediów i wybierasz tutaj.
     // Starsze pole tekstowe `gpxFile` zostaje na czas migracji treści, bo
     // wszystkie obecne trasy wskazują jeszcze pliki leżące w repo frontendu.

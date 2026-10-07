@@ -13,6 +13,8 @@ export default defineCollection({
   apiRoutes: { read: 'public', readMany: 'public' },
   search: { default: ['key', 'title'] },
   dashboard: {
+    // Ukryte w panelu: wszystkie teksty są w formularzach „Strona: …”. Dane zostają jako kopia.
+    visible: false,
     primaryField: 'key',
     overviewTable: { sort: { field: 'key', direction: 'asc' }, perPage: 100 },
   },

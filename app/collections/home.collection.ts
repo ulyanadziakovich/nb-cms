@@ -9,6 +9,7 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: "Home",
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     fieldLayout: [{"Nagłówek ze zdjęciem":["heroImage","heroKicker","heroTitle","heroSubtitle","heroCta","heroCtaHref"],"Krótko o nas":["aboutKicker","aboutTitle","aboutParagraph1","aboutParagraph2","aboutTagline","aboutImage"],"Najnowsze aktualności":["newsKicker","newsTitle","newsAllLink"]}],
   },
   fields: {

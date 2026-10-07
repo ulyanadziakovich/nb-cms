@@ -5,7 +5,7 @@
 // W tekstach można użyć znaczników, które strona podmienia sama:
 //   {liczba} — np. liczba wpisów, {min} / {max} — zakres, {rok} — bieżący rok.
 import { readFileSync } from 'node:fs'
-import { area, color, editor, file, image, link, text, textToHtml } from './fields.mjs'
+import { area, color, editor, file, gallery, image, link, text, textToHtml } from './fields.mjs'
 
 const snapshot = JSON.parse(readFileSync(new URL('./page-content-snapshot.json', import.meta.url), 'utf8'))
 const pc = (key) => snapshot[key] ?? { title: '', body: '', image: '' }
@@ -71,6 +71,20 @@ export default [
         gallerySwipe: text('Podpowiedź na telefonie', 'Przesuń, aby zobaczyć więcej →'),
         galleryExpand: text('Przycisk rozwijający galerię', 'Pokaż wszystkie zdjęcia ({liczba})', COUNT),
         galleryCollapse: text('Przycisk zwijający galerię', 'Zwiń galerię'),
+      },
+      'Wygląd strony': {
+        colorTitle: color('Tytuły i nagłówki', '#151d1c', 'Np. „Krótko o nas”, tytuły sekcji i kart.'),
+        colorLead: color('Tekst wyróżniony (wstępy)', '#566c71', 'Pierwszy akapit opisów i duże zdania.'),
+        colorBody: color('Zwykły tekst', '#6c7173', 'Akapity w opisach i kartach.'),
+        colorExtra: color('Tekst dodatkowy (pytania)', '#615b3a', 'Np. „Czym się zajmujemy?”.'),
+        colorAccent: color('Akcent: przyciski, numery, linki', '#a8551f', 'Pomarańczowe przyciski, małe napisy nad tytułami, linki.'),
+        colorBrand: color('Kolor marki (tytuły podstron, liczniki)', '#135e24'),
+        colorInk: color('Ciemny kolor (menu, stopka, główne napisy)', '#1a2420'),
+        colorBackground: color('Tło strony', '#eff2ef'),
+        colorSection: color('Tło nagłówków podstron', '#f3f1ea'),
+        colorEasy: color('Trasy łatwe (mapa i oznaczenia)', '#0072bd'),
+        colorMedium: color('Trasy średnie (mapa i oznaczenia)', '#9c27b0'),
+        colorHard: color('Trasy trudne (mapa i oznaczenia)', '#cc0000'),
       },
       'Trasy — nazwy': {
         difficultyEasy: text('Trudność: łatwa', 'Łatwa'),
@@ -388,6 +402,7 @@ export default [
         statutDownload: text('Przycisk pobierania', 'Pobierz Statut (PDF)'),
         statutOpen: text('Przycisk otwierania', 'Otwórz w nowej karcie'),
         statutHint: text('Podpowiedź nad stronami', 'Kliknij stronę, żeby ją powiększyć.'),
+        statutPages: gallery('Strony statutu (zdjęcia)', 'Zdjęcia kolejnych stron statutu — przeciągnij, aby ustawić kolejność.', 'o-nas/statut/'),
       },
       Deklaracja: {
         deklaracjaTitle: text('Tytuł', 'Deklaracja członkowska'),
@@ -476,4 +491,3 @@ export default [
   },
 ]
 
-export { color }

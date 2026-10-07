@@ -10,6 +10,7 @@ export default defineCollection({
   mode: 'single',
   label: { collection: { plural: 'wolontariat', singular: 'wolontariat' } },
   translatable: false,
+  dashboard: { additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue' },
   apiRoutes: { read: 'public' },
   fields: {
     title: { type: 'text', options: { required: true, label: 'Tytuł strony', default: 'Wolontariat' } },

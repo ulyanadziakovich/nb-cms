@@ -9,6 +9,7 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: "Mountain",
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statPeaks","pageTitle"],"Pasek z liczbami":["barPeaksLabel","stats"],"Szczyty":["peaksKicker","peaksTitle","peaksLead","peakElevation","peakTower"],"Wydarzenia sportowe":["eventsKicker","eventsTitle","eventFree","eventMore","eventTickets"]}],
   },
   fields: {

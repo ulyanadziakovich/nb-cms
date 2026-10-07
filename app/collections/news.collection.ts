@@ -8,6 +8,7 @@ export default defineCollection({
   apiRoutes: { read: 'public', readMany: 'public' },
   search: { default: [{ field: 'title', reserve: 30 }, 'excerpt'] },
   dashboard: {
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     primaryField: 'title',
     overviewTable: { sort: { field: 'order', direction: 'asc' }, perPage: 100 },
   },
@@ -19,7 +20,8 @@ export default defineCollection({
     image: { type: 'image', options: { required: true, label: 'Zdjęcie' } },
     excerpt: { type: 'text-area', options: { required: true, label: 'Zajawka', rows: 3 } },
     body: { type: 'text-area', options: { required: true, label: 'Treść (akapity oddzielone pustą linią)', rows: 8 } },
-    gallery: { type: 'text-area', options: { required: false, label: 'Galeria (jeden URL na linię — plik wgrany osobno, wklej tu jego ścieżkę /uploads/...)', rows: 4 } },
+    photos: { type: 'gallery', options: { label: 'Zdjęcia (galeria)', description: 'Wgraj wiele zdjęć naraz albo dodaj z biblioteki mediów. Kolejność zmieniasz przeciąganiem.', directory: 'aktualnosci/galerie/' } },
+    gallery: { type: 'text-area', options: { required: false, label: 'Stara galeria (adresy) — nie używać', description: 'Zastąpiona polem „Zdjęcia (galeria)” powyżej. Zostaje tylko jako kopia zapasowa.', rows: 4 } },
     order: { type: 'number', options: { required: false, default: 0, label: 'Kolejność', description: 'Ustawiana przeciąganiem na liście (uchwyt ⠿).' } },
   },
 })

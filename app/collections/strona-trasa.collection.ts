@@ -9,6 +9,7 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: "MapPin",
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     fieldLayout: [{"Plik GPX":["gpxTitle","gpxText","gpxButton","gpxSoon"],"Podstawowe informacje":["infoTitle","rowName","rowStart","rowCharacter","rowLength","rowElevation","rowRange","rowRangeUnit","rowTime","rowDifficulty","rowBike","rowSurface"],"Nagłówki sekcji":["elevationTitle","elevationNote","mapTitle","descriptionTitle","overviewLabel","waypointsTitle","waypointsKm","waypointsPoint","waypointsMeaning","highlightsTitle","stopsTitle","natureTitle","cultureTitle","surfaceTitle","surfaceAsphalt","surfaceGravel","surfaceTerrain","touristTitle","recommendationTitle","safetyTitle","backLink","notFound"]}],
   },
   fields: {

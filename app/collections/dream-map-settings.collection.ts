@@ -9,6 +9,7 @@ export default defineCollection({
   apiRoutes: { read: 'public' },
   dashboard: {
     icon: "Star",
+    additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
     fieldLayout: [{"Mapa nieba":["heroImage","skyTitle","skyTitleAccent","skySubtitle","skyInfoButton","skyInfoTitle","skyInfoText","skyInfoAuthor","skyInfoFooter","filterAll","filterCount","challengeLabel","solutionLabel","pageTitle"],"Skąd wzięła się mapa":["aboutKicker","aboutTitle","aboutImage","aboutText","fundingNote","fundingLogo1","fundingLogo2"],"Lista postulatów":["boardCount","boardTitle","boardLead"],"Zgłoś pomysł":["ideaKicker","ideaTitle","ideaText","ideaTileLink","ideaField1","ideaField2","ideaField3","ideaField4","ideaSubmit","ideaSending","ideaError","ideaSuccessTitle","ideaSuccessText","ideaAgain"]}],
   },
   fields: {
