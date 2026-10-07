@@ -1,0 +1,45 @@
+// WYGENEROWANE z scripts/page-texts/spec.mjs — nie edytuj ręcznie.
+// Zmiany: popraw spec.mjs i uruchom `node scripts/page-texts/generate.mjs`.
+import { defineCollection } from '#pruvious'
+
+export default defineCollection({
+  name: "strona-szlaki",
+  mode: 'single',
+  label: { collection: { plural: "Strona: Szlaki rowerowe", singular: "Strona: Szlaki rowerowe" } },
+  apiRoutes: { read: 'public' },
+  dashboard: {
+    icon: "Map",
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statTrailsOne","statTrailsFew","statTrailsMany","statLength","statLevels","pageTitle"],"Mapa tras":["mapKicker","mapTitle","mapLead","mapLoading","mapHint","mapError","mapPopupLink"],"Filtry i lista":["filterDifficulty","filterBike","filterAll","filterLength","filterReset","resultsOne","resultsFew","resultsMany","emptyText","emptyReset","cardCta"],"Ramka o projekcie":["noteKicker","noteText"]}],
+  },
+  fields: {
+    heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Turystyka rowerowa"} },
+    heroTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Bieszczady na dwóch kołach – 24 trasy sprawdzone przez nas w terenie"} },
+    heroDescription: { type: 'editor', options: {"required":false,"label":"Opis","default":"<p>Rozwój turystyki rowerowej w Bieszczadach to jeden z kierunków, na których szczególnie nam zależy. Dlatego na potrzeby aplikacji rowerowej Województwa Podkarpackiego podjęliśmy się audytu tras rowerowych, które osobiście przejechaliśmy i sprawdziliśmy w terenie.</p><p>Łącznie przygotowaliśmy 24 trasy. Za każdą z nich stoją kilometry przejechane na rowerach, dokumentacja fotograficzna, analiza przebiegu oraz dokładne sprawdzenie tego, czego rowerzysta może spodziewać się po drodze.</p><p>Efekty tej pracy udostępniamy również na naszej stronie internetowej, aby mogły służyć zarówno turystom odwiedzającym Bieszczady, jak i mieszkańcom, którzy chcą odkrywać region na dwóch kołach.</p><h2>Wszystko, czego potrzebujesz przed wyjazdem</h2><p>Dla każdej z tras przygotowaliśmy komplet praktycznych informacji. Można pobrać ślad GPX, zobaczyć dokładny przebieg na mapie, sprawdzić długość trasy i profil wysokościowy, obejrzeć zdjęcia oraz zapoznać się z informacjami o miejscach, które mogą wymagać większej uwagi.</p><p>Zaznaczyliśmy również atrakcje znajdujące się na trasie lub w jej bezpośrednim sąsiedztwie – kościoły i cerkwie, punkty oraz platformy widokowe, miejsca związane z historią regionu czy takie atrakcje jak wieża widokowa na Holicy.</p><p>Chcemy, aby przed wyruszeniem w drogę można było nie tylko zobaczyć, którędy prowadzi trasa, ale naprawdę dobrze się do niej przygotować.</p><h2>Wybierz trasę odpowiednią dla siebie</h2><p>Nie każdy szuka tego samego wyzwania, dlatego wszystkie trasy podzieliliśmy według stopnia trudności:</p><ul><li><p>🔵 łatwe – kolor niebieski</p></li><li><p>🟣 średnie – kolor fioletowy</p></li><li><p>🔴 trudne – kolor czerwony</p></li></ul><p>Dzięki temu już na etapie planowania można dobrać trasę do własnej kondycji, doświadczenia, możliwości oraz czasu, którym dysponujemy.</p><p>Przygotowaliśmy również zbiorczą mapę wszystkich 24 tras. Wystarczy wybrać interesującą trasę na mapie, aby przejść do jej szczegółowego opisu i wszystkich przygotowanych przez nas materiałów.</p><h2>Tysiące kilometrów przejechanych po to, żeby ułatwić Wam drogę</h2><p>Przygotowanie całego materiału oznaczało dla nas tysiące kilometrów spędzonych na rowerach i w terenie. Chcieliśmy jednak stworzyć coś, co będzie miało przede wszystkim praktyczną wartość.</p><p>Nie pokazujemy tras wyłącznie jako linii narysowanych na mapie. Przejechaliśmy je, sprawdziliśmy, sfotografowaliśmy i opisaliśmy, zwracając uwagę zarówno na ich największe atuty, jak i miejsca, w których rowerzysta może napotkać trudności.</p><p>Na stronie wskazujemy również sprawdzone przez nas wypożyczalnie rowerów elektrycznych, z których mogą skorzystać osoby niemające własnego sprzętu lub chcące spróbować jazdy na e-bike’u.</p><ul><li><p><a href=\"https://share.google/l0KAYl9A5dbUmx60V\">BiesCzadowe e-Bike – Wypożyczalnia Rowerów Elektrycznych</a></p></li></ul><ul><li><p><a href=\"https://share.google/eIqtoqAl2sPDASxUw\">Bieszczadzka Wypożyczalnia Rowerów Elektrycznych</a></p></li></ul><ul><li><p><a href=\"https://share.google/kD8dCFqGzQjuw5FEW\">Elektrobiesy Wypożyczalnia rowerów elektrycznych</a></p></li></ul><p>Bieszczady mają ogromny potencjał dla turystyki rowerowej. Chcemy pomóc go odkrywać – bezpieczniej, wygodniej i z dobrym przygotowaniem.</p><p>Wybierzcie trasę, pobierzcie GPX, wsiadajcie na rower i ruszajcie z nami w Bieszczady! 🚴‍♂️⛰️</p>","toolbar":["heading2","heading3","paragraph","bold","italic","link","bulletList","orderedList","blockquote","clear","undo","redo"]} },
+    statTrailsOne: { type: 'text', options: {"required":false,"label":"Licznik: 1 trasa","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"{liczba} zaudytowana trasa"} },
+    statTrailsFew: { type: 'text', options: {"required":false,"label":"Licznik: 2–4 trasy","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"{liczba} zaudytowane trasy"} },
+    statTrailsMany: { type: 'text', options: {"required":false,"label":"Licznik: 5 i więcej tras","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"{liczba} zaudytowanych tras"} },
+    statLength: { type: 'text', options: {"required":false,"label":"Zakres długości","description":"Strona sama wstawi najkrótszą i najdłuższą trasę w miejsce {min} i {max}.","default":"{min}–{max} km długości"} },
+    statLevels: { type: 'text', options: {"required":false,"label":"Trzeci napis pod tytułem","default":"3 poziomy trudności"} },
+    pageTitle: { type: 'text', options: {"required":false,"label":"Tytuł w karcie przeglądarki","default":"Nasze szlaki rowerowe"} },
+    mapKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Wszystkie trasy"} },
+    mapTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Mapa szlaków"} },
+    mapLead: { type: 'text-area', options: {"required":false,"label":"Opis pod tytułem","default":"Wszystkie zaudytowane trasy na jednej mapie. Kliknij ślad, aby przejść do jego opisu.","rows":2} },
+    mapLoading: { type: 'text', options: {"required":false,"label":"Podczas wczytywania","description":"Strona sama wstawi liczbę wczytanych i wszystkich tras.","default":"Wczytywanie tras… {liczba}/{wszystkie}"} },
+    mapHint: { type: 'text', options: {"required":false,"label":"Podpowiedź na mapie","default":"Kliknij mapę, aby przybliżać i przesuwać"} },
+    mapError: { type: 'text', options: {"required":false,"label":"Gdy ślad się nie wczyta","description":"Strona sama wstawi nazwy tras w miejsce {trasy}.","default":"Nie udało się wczytać śladu: {trasy}."} },
+    mapPopupLink: { type: 'text', options: {"required":false,"label":"Link w dymku trasy","default":"Zobacz trasę"} },
+    filterDifficulty: { type: 'text', options: {"required":false,"label":"Filtr: trudność","default":"Trudność"} },
+    filterBike: { type: 'text', options: {"required":false,"label":"Filtr: typ roweru","default":"Typ roweru"} },
+    filterAll: { type: 'text', options: {"required":false,"label":"Opcja „wszystkie”","default":"Wszystkie"} },
+    filterLength: { type: 'text', options: {"required":false,"label":"Filtr: długość","default":"Maks. długość"} },
+    filterReset: { type: 'text', options: {"required":false,"label":"Przycisk czyszczenia filtrów","default":"Wyczyść"} },
+    resultsOne: { type: 'text', options: {"required":false,"label":"Wynik: 1 trasa","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"Znaleziono {liczba} trasę"} },
+    resultsFew: { type: 'text', options: {"required":false,"label":"Wynik: 2–4 trasy","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"Znaleziono {liczba} trasy"} },
+    resultsMany: { type: 'text', options: {"required":false,"label":"Wynik: 5 i więcej tras","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"Znaleziono {liczba} tras"} },
+    emptyText: { type: 'text', options: {"required":false,"label":"Gdy nic nie pasuje","default":"Brak tras spełniających wybrane kryteria."} },
+    emptyReset: { type: 'text', options: {"required":false,"label":"Link przy braku wyników","default":"Wyczyść filtry i pokaż wszystkie"} },
+    cardCta: { type: 'text', options: {"required":false,"label":"Link na karcie trasy","default":"Zobacz trasę i pobierz GPX"} },
+    noteKicker: { type: 'text', options: {"required":false,"label":"Napis nad tekstem","default":"Projekt „Podkarpacka Rowerowa Przygoda”"} },
+    noteText: { type: 'text-area', options: {"required":false,"label":"Tekst","default":"Trasy w naszej bazie są sukcesywnie audytowane we współpracy z Województwem Podkarpackim. Każdy audyt obejmuje realny przejazd trasy, dokumentację fotograficzną nawierzchni i widoków, pomiar przewyższeń oraz opis miejsc odpoczynku i punktów gastronomicznych.","rows":4} },
+  },
+})

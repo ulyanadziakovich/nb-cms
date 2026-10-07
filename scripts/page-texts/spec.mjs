@@ -1,0 +1,479 @@
+// Jedno źródło prawdy dla wszystkich tekstów i obrazków na stronie, które nie są
+// osobnymi wpisami (trasy, aktualności…). Każdy element listy = jeden formularz
+// „Strona: …” w CMS, z zakładkami jak sekcje na stronie.
+//
+// W tekstach można użyć znaczników, które strona podmienia sama:
+//   {liczba} — np. liczba wpisów, {min} / {max} — zakres, {rok} — bieżący rok.
+import { readFileSync } from 'node:fs'
+import { area, color, editor, file, image, link, text, textToHtml } from './fields.mjs'
+
+const snapshot = JSON.parse(readFileSync(new URL('./page-content-snapshot.json', import.meta.url), 'utf8'))
+const pc = (key) => snapshot[key] ?? { title: '', body: '', image: '' }
+const html = (key) => textToHtml(pc(key).body)
+const COUNT = 'Strona sama wstawi liczbę w miejsce {liczba}.'
+
+export default [
+  {
+    name: 'home',
+    label: 'Strona: Główna',
+    url: '/',
+    icon: 'Home',
+    tabs: {
+      'Nagłówek ze zdjęciem': {
+        heroImage: image('Zdjęcie tła', 'Duże zdjęcie na samej górze strony głównej.'),
+        heroKicker: text('Napis nad tytułem', 'Ustrzyki Dolne · Bieszczady'),
+        heroTitle: text('Tytuł', 'NOWOCZESNE BIESZCZADY'),
+        heroSubtitle: area('Podtytuł', 'Tworzymy wydarzenia, konkursy i inicjatywy, które budują tożsamość regionu.', undefined, 2),
+        heroCta: text('Napis na przycisku', 'Dowiedz się więcej'),
+        heroCtaHref: link('Dokąd prowadzi przycisk', '/o-nas/misja'),
+      },
+      'Krótko o nas': {
+        aboutKicker: text('Napis nad tytułem', 'Stowarzyszenie'),
+        aboutTitle: text('Tytuł', 'Krótko o nas'),
+        aboutParagraph1: area('Tekst — część 1', '', 'Pytanie na końcu linii (?) = śródtytuł, linia od emoji = karta „filaru”, linia z wcięciem = punkt w karcie.', 10),
+        aboutParagraph2: area('Tekst — część 2', '', undefined, 4),
+        aboutTagline: text('Hasło na zdjęciu', '„SKUTECZNI DLA WAS”'),
+        aboutImage: image('Zdjęcie', 'Szeroka panorama w środku sekcji.'),
+      },
+      'Najnowsze aktualności': {
+        newsKicker: text('Napis nad tytułem', 'Blog'),
+        newsTitle: text('Tytuł', 'Najnowsze aktualności'),
+        newsAllLink: text('Link do wszystkich', 'Zobacz wszystkie aktualności'),
+      },
+    },
+  },
+
+  {
+    name: 'site-settings',
+    label: 'Elementy wspólne i kontakt',
+    icon: 'Settings',
+    tabs: {
+      Kontakt: {
+        logo: image('Logo (ikona)', 'W nagłówku i stopce.'),
+        email: text('Adres e-mail', 'biuro@nowoczesnebieszczady.pl'),
+        phone: text('Telefon', '507 068 728'),
+        address: text('Adres', 'Ustrzyki Dolne, woj. podkarpackie'),
+        facebookUrl: link('Facebook (adres strony)', 'https://www.facebook.com/nowoczesne.bieszczady/?locale=pl_PL'),
+        facebookLabel: text('Napis „Facebook”', 'Facebook'),
+      },
+      Stopka: {
+        footerTitle: text('Nazwa w stopce', 'NOWOCZESNE BIESZCZADY'),
+        footerTagline: text('Opis pod nazwą', 'Stowarzyszenie działające na rzecz rozwoju regionu'),
+        footerDownloads: text('Nagłówek listy dokumentów', 'Do pobrania'),
+        footerCopyright: text('Prawa autorskie', '© {rok} Nowoczesne Bieszczady. Wszystkie prawa zastrzeżone.', 'Strona sama wstawi bieżący rok w miejsce {rok}.'),
+      },
+      'Karty i przyciski': {
+        readMore: text('„Czytaj więcej” na kartach wpisów', 'Czytaj więcej →'),
+        siteName: text('Nazwa strony w karcie przeglądarki', 'Nowoczesne Bieszczady', 'Dopisywana po tytule podstrony, np. „Aktualności — Nowoczesne Bieszczady”.'),
+      },
+      Galerie: {
+        galleryShowAll: text('Na ostatnim kafelku mozaiki', 'Zobacz wszystkie'),
+        gallerySwipe: text('Podpowiedź na telefonie', 'Przesuń, aby zobaczyć więcej →'),
+        galleryExpand: text('Przycisk rozwijający galerię', 'Pokaż wszystkie zdjęcia ({liczba})', COUNT),
+        galleryCollapse: text('Przycisk zwijający galerię', 'Zwiń galerię'),
+      },
+      'Trasy — nazwy': {
+        difficultyEasy: text('Trudność: łatwa', 'Łatwa'),
+        difficultyMedium: text('Trudność: średnia', 'Średnia'),
+        difficultyHard: text('Trudność: trudna', 'Trudna'),
+        bikeMtb: text('Rower: MTB', 'MTB'),
+        bikeGravel: text('Rower: gravel', 'Gravel'),
+        bikeEbike: text('Rower: e-bike', 'E-bike'),
+        bikeRoad: text('Rower: szosa', 'Szosa'),
+        cardElevation: text('Na karcie trasy: przewyższenia', '{liczba} m przewyższeń', COUNT),
+      },
+    },
+  },
+
+  {
+    name: 'strona-aktualnosci',
+    label: 'Strona: Aktualności',
+    url: '/aktualnosci',
+    icon: 'News',
+    tabs: {
+      Nagłówek: {
+        heroKicker: text('Napis nad tytułem', 'Blog'),
+        heroTitle: text('Tytuł', pc('aktualnosci-hero-description').title || 'Aktualności'),
+        heroDescription: editor('Opis', html('aktualnosci-hero-description')),
+        statPostsOne: text('Licznik: 1 wpis', '{liczba} opublikowany wpis', COUNT),
+        statPostsFew: text('Licznik: 2–4 wpisy', '{liczba} opublikowane wpisy', COUNT),
+        statPostsMany: text('Licznik: 5 i więcej wpisów', '{liczba} opublikowanych wpisów', COUNT),
+        statExtra: text('Drugi napis pod tytułem', 'Aktualizowane na bieżąco'),
+        pageTitle: text('Tytuł w karcie przeglądarki', 'Aktualności'),
+      },
+      'Pojedynczy wpis': {
+        galleryTitle: text('Nagłówek galerii', 'Galeria'),
+        photosOne: text('Licznik: 1 zdjęcie', '{liczba} zdjęcie', COUNT),
+        photosFew: text('Licznik: 2–4 zdjęcia', '{liczba} zdjęcia', COUNT),
+        photosMany: text('Licznik: 5 i więcej zdjęć', '{liczba} zdjęć', COUNT),
+        backLink: text('Link powrotu', '← Wróć do aktualności'),
+        notFound: text('Gdy wpisu nie ma', 'Nie znaleziono wpisu'),
+      },
+    },
+  },
+
+  {
+    name: 'strona-szlaki',
+    label: 'Strona: Szlaki rowerowe',
+    url: '/szlaki',
+    icon: 'Map',
+    tabs: {
+      Nagłówek: {
+        heroKicker: text('Napis nad tytułem', 'Turystyka rowerowa'),
+        heroTitle: text('Tytuł', pc('szlaki-hero-description').title || 'Nasze szlaki rowerowe'),
+        heroDescription: editor('Opis', html('szlaki-hero-description')),
+        statTrailsOne: text('Licznik: 1 trasa', '{liczba} zaudytowana trasa', COUNT),
+        statTrailsFew: text('Licznik: 2–4 trasy', '{liczba} zaudytowane trasy', COUNT),
+        statTrailsMany: text('Licznik: 5 i więcej tras', '{liczba} zaudytowanych tras', COUNT),
+        statLength: text('Zakres długości', '{min}–{max} km długości', 'Strona sama wstawi najkrótszą i najdłuższą trasę w miejsce {min} i {max}.'),
+        statLevels: text('Trzeci napis pod tytułem', '3 poziomy trudności'),
+        pageTitle: text('Tytuł w karcie przeglądarki', 'Nasze szlaki rowerowe'),
+      },
+      'Mapa tras': {
+        mapKicker: text('Napis nad tytułem', 'Wszystkie trasy'),
+        mapTitle: text('Tytuł', 'Mapa szlaków'),
+        mapLead: area('Opis pod tytułem', 'Wszystkie zaudytowane trasy na jednej mapie. Kliknij ślad, aby przejść do jego opisu.', undefined, 2),
+        mapLoading: text('Podczas wczytywania', 'Wczytywanie tras… {liczba}/{wszystkie}', 'Strona sama wstawi liczbę wczytanych i wszystkich tras.'),
+        mapHint: text('Podpowiedź na mapie', 'Kliknij mapę, aby przybliżać i przesuwać'),
+        mapError: text('Gdy ślad się nie wczyta', 'Nie udało się wczytać śladu: {trasy}.', 'Strona sama wstawi nazwy tras w miejsce {trasy}.'),
+        mapPopupLink: text('Link w dymku trasy', 'Zobacz trasę'),
+      },
+      'Filtry i lista': {
+        filterDifficulty: text('Filtr: trudność', 'Trudność'),
+        filterBike: text('Filtr: typ roweru', 'Typ roweru'),
+        filterAll: text('Opcja „wszystkie”', 'Wszystkie'),
+        filterLength: text('Filtr: długość', 'Maks. długość'),
+        filterReset: text('Przycisk czyszczenia filtrów', 'Wyczyść'),
+        resultsOne: text('Wynik: 1 trasa', 'Znaleziono {liczba} trasę', COUNT),
+        resultsFew: text('Wynik: 2–4 trasy', 'Znaleziono {liczba} trasy', COUNT),
+        resultsMany: text('Wynik: 5 i więcej tras', 'Znaleziono {liczba} tras', COUNT),
+        emptyText: text('Gdy nic nie pasuje', 'Brak tras spełniających wybrane kryteria.'),
+        emptyReset: text('Link przy braku wyników', 'Wyczyść filtry i pokaż wszystkie'),
+        cardCta: text('Link na karcie trasy', 'Zobacz trasę i pobierz GPX'),
+      },
+      'Ramka o projekcie': {
+        noteKicker: text('Napis nad tekstem', pc('szlaki-project-note').title),
+        noteText: area('Tekst', pc('szlaki-project-note').body, undefined, 4),
+      },
+    },
+  },
+
+  {
+    name: 'strona-trasa',
+    label: 'Strona: Pojedyncza trasa',
+    url: '/szlaki',
+    icon: 'MapPin',
+    tabs: {
+      'Plik GPX': {
+        gpxTitle: text('Nagłówek', 'Pobierz nawigację GPX'),
+        gpxText: text('Opis', 'Plik do wgrania na nawigację rowerową lub zegarek GPS.'),
+        gpxButton: text('Przycisk pobierania', 'Pobierz plik GPX'),
+        gpxSoon: text('Gdy pliku jeszcze nie ma', 'GPX wkrótce dostępny'),
+      },
+      'Podstawowe informacje': {
+        infoTitle: text('Nagłówek sekcji', 'Podstawowe informacje'),
+        rowName: text('Wiersz: nazwa', 'Nazwa trasy'),
+        rowStart: text('Wiersz: start/meta', 'Punkt startu/mety'),
+        rowCharacter: text('Wiersz: charakter', 'Charakter trasy'),
+        rowLength: text('Wiersz: długość', 'Długość z GPX'),
+        rowElevation: text('Wiersz: przewyższenia', 'Przewyższenia z GPX'),
+        rowRange: text('Wiersz: zakres wysokości', 'Zakres wysokości'),
+        rowRangeUnit: text('Jednostka zakresu', 'm n.p.m.'),
+        rowTime: text('Wiersz: czas', 'Szacowany czas przejazdu'),
+        rowDifficulty: text('Wiersz: trudność', 'Poziom trudności'),
+        rowBike: text('Wiersz: rower', 'Rekomendowany rower'),
+        rowSurface: text('Wiersz: nawierzchnia', 'Nawierzchnia'),
+      },
+      'Nagłówki sekcji': {
+        elevationTitle: text('Profil wysokościowy', 'Profil wysokościowy'),
+        elevationNote: text('Podpis pod wykresem poglądowym', 'Wykres poglądowy — pełne dane wysokościowe dostępne w pliku GPX.'),
+        mapTitle: text('Mapa przebiegu', 'Mapa przebiegu trasy'),
+        descriptionTitle: text('Opis trasy', 'Opis trasy'),
+        overviewLabel: text('Etykieta przebiegu', 'Przebieg trasy:'),
+        waypointsTitle: text('Najważniejsze punkty', 'Najważniejsze punkty na trasie'),
+        waypointsKm: text('Kolumna: km', 'Km'),
+        waypointsPoint: text('Kolumna: punkt', 'Punkt / miejscowość'),
+        waypointsMeaning: text('Kolumna: znaczenie', 'Znaczenie'),
+        highlightsTitle: text('Co warto zobaczyć', 'Co warto zobaczyć'),
+        stopsTitle: text('Odpoczynek i gastronomia', 'Miejsca odpoczynku i gastronomia'),
+        natureTitle: text('Walory przyrodnicze', 'Walory przyrodnicze'),
+        cultureTitle: text('Walory kulturowe', 'Walory historyczne i kulturowe'),
+        surfaceTitle: text('Nawierzchnia', 'Nawierzchnia'),
+        surfaceAsphalt: text('Asfalt', 'Asfalt'),
+        surfaceGravel: text('Szuter', 'Szuter'),
+        surfaceTerrain: text('Teren', 'Teren'),
+        touristTitle: text('Informacje turystyczne', 'Informacje turystyczne i audytowe'),
+        recommendationTitle: text('Rekomendacja', 'Rekomendacja końcowa'),
+        safetyTitle: text('Bezpieczeństwo', 'Bezpieczeństwo'),
+        backLink: text('Link powrotu', '← Wróć do wszystkich tras'),
+        notFound: text('Gdy trasy nie ma', 'Nie znaleziono trasy'),
+      },
+    },
+  },
+
+  {
+    name: 'strona-korona',
+    label: 'Strona: Korona Ustrzyckich Gór',
+    url: '/korona-gor',
+    icon: 'Mountain',
+    tabs: {
+      Nagłówek: {
+        heroKicker: text('Napis nad tytułem', 'Turystyka górska'),
+        heroTitle: text('Tytuł', pc('korona-gor-hero-description').title || 'Korona Ustrzyckich Gór'),
+        heroDescription: editor('Opis', html('korona-gor-hero-description')),
+        statPeaks: text('Licznik szczytów (pod tytułem)', '{liczba} szczytów w pętli', COUNT),
+        pageTitle: text('Tytuł w karcie przeglądarki', 'Korona Ustrzyckich Gór'),
+      },
+      'Pasek z liczbami': {
+        barPeaksLabel: text('Podpis liczby szczytów', 'Szczytów w pętli'),
+        stats: area('Pozostałe liczby', pc('korona-gor-stats').body, 'Jedna pozycja w linii, w formie „Podpis: wartość”, np. „Długość trasy: 30,9 km”. Wartości pokazują się też pod tytułem strony.', 4),
+      },
+      Szczyty: {
+        peaksKicker: text('Napis nad tytułem', 'Pięć szczytów, jedna pętla'),
+        peaksTitle: text('Tytuł', 'Szczyty do zdobycia'),
+        peaksLead: area('Opis', pc('korona-gor-intro').body),
+        peakElevation: text('Wysokość szczytu', '{liczba} m n.p.m.', 'Strona sama wstawi wysokość w miejsce {liczba}.'),
+        peakTower: text('Oznaczenie wieży', 'Wieża widokowa'),
+      },
+      'Wydarzenia sportowe': {
+        eventsKicker: text('Napis nad tytułem', 'Wydarzenia sportowe'),
+        eventsTitle: text('Tytuł', 'Rajdy i mecze terenowe'),
+        eventFree: text('Oznaczenie bezpłatnego wydarzenia', 'Wstęp wolny'),
+        eventMore: text('Przycisk „Więcej”', 'Więcej'),
+        eventTickets: text('Przycisk biletów', 'Bilety'),
+      },
+    },
+  },
+
+  {
+    name: 'strona-kultura',
+    label: 'Strona: Kultura',
+    url: '/kultura',
+    icon: 'Photo',
+    tabs: {
+      Nagłówek: {
+        heroKicker: text('Napis nad tytułem', 'Kultura'),
+        heroTitle: text('Tytuł', pc('kultura-hero-description').title || 'Kultura i wydarzenia'),
+        heroDescription: editor('Opis', html('kultura-hero-description')),
+        statEditions: text('Licznik edycji (pod tytułem)', '{liczba} edycji festiwalu', COUNT),
+        statContests: text('Licznik konkursów (pod tytułem)', '{liczba} cykliczne konkursy', COUNT),
+        statExtra: text('Trzeci napis pod tytułem', 'Wydarzenia co roku'),
+        pageTitle: text('Tytuł w karcie przeglądarki', 'Kultura i wydarzenia'),
+      },
+      'Pasek z liczbami': {
+        barEditionsLabel: text('Podpis liczby edycji', 'Edycji festiwalu'),
+        barContestsLabel: text('Podpis liczby konkursów', 'Konkursy cykliczne'),
+        stats: area('Pozostałe liczby', pc('kultura-stats').body, 'Jedna pozycja w linii, w formie „Podpis: wartość”.', 3),
+      },
+      Festiwal: {
+        festivalKicker: text('Napis nad tytułem', 'Festiwal Granie Bez Granic'),
+        festivalTitle: text('Tytuł', 'Archiwum edycji'),
+        festivalLead: area('Opis', 'Muzyczne wydarzenie łączące kultury i pokolenia — zobacz relacje z poprzednich edycji festiwalu.', undefined, 2),
+        editionNewest: text('Oznaczenie najnowszej edycji', 'Najnowsza'),
+        editionLink: text('Link na karcie edycji', 'Zobacz opis i galerię →'),
+        announcementImage: image('Zapowiedź — plakat', 'Karta zapowiedzi obok edycji. Bez plakatu karta się nie pokazuje.'),
+        announcementBadge: text('Zapowiedź — oznaczenie', 'Zapowiedź'),
+        announcementText: area('Zapowiedź — tekst', 'Z dumą zapraszamy na Festiwal „Granie Bez Granic” — nowe wydarzenie, którego jesteśmy organizatorem. Połączenie koncertów, astronomii i ekologii, w sercu Ustrzyk Dolnych, tam gdzie niebo naprawdę jest ciemne.'),
+        upcomingKicker: text('Nadchodząca edycja — napis', 'Nadchodząca edycja'),
+        upcomingTitle: text('Nadchodząca edycja — tytuł', pc('kultura-upcoming').title),
+        upcomingText: area('Nadchodząca edycja — tekst', pc('kultura-upcoming').body, undefined, 2),
+        upcomingButton: text('Nadchodząca edycja — przycisk', 'Śledź aktualności'),
+      },
+      Konkursy: {
+        contestsKicker: text('Napis nad tytułem', 'Konkursy'),
+        contestsTitle: text('Tytuł', 'Konkursy fotograficzne i malarskie'),
+        documentsTitle: text('Nagłówek dokumentów', 'Dokumenty do pobrania'),
+        documentPreview: text('Przycisk podglądu', 'Podgląd'),
+        documentDownload: text('Przycisk pobierania', 'Pobierz'),
+        contestsLink: text('Link pod konkursem', 'Śledź aktualności →'),
+      },
+      'Strona edycji': {
+        editionKicker: text('Napis nad tytułem', 'Festiwal Granie Bez Granic'),
+        editionBack: text('Link powrotu', '← Wróć do Kultury'),
+        editionNotFound: text('Gdy edycji nie ma', 'Nie znaleziono edycji'),
+      },
+    },
+  },
+
+  {
+    name: 'strona-inicjatywy',
+    label: 'Strona: Inicjatywy',
+    url: '/inicjatywy',
+    icon: 'Bulb',
+    tabs: {
+      Nagłówek: {
+        heroKicker: text('Napis nad tytułem', 'Edukacja i społeczność'),
+        heroTitle: text('Tytuł', pc('inicjatywy-hero-description').title || 'Inicjatywy społeczne i edukacja'),
+        heroDescription: editor('Opis', html('inicjatywy-hero-description')),
+        stats: area('Napisy pod tytułem', 'Warsztaty podcastowe\nCykliczne debaty\nOtwarte dla mieszkańców', 'Jeden napis w linii.'),
+        pageTitle: text('Tytuł w karcie przeglądarki', 'Inicjatywy społeczne i edukacja'),
+      },
+      'Bieszczady w eterze': {
+        eterKicker: text('Napis nad tytułem', 'Projekt warsztatowy'),
+        eterTitle: text('Tytuł', pc('inicjatywy-eterze').title),
+        eterText: editor('Tekst', html('inicjatywy-eterze')),
+        eterImage: image('Zdjęcie'),
+      },
+      'Burza Mózgów': {
+        burzaKicker: text('Napis nad tytułem', 'Debaty społeczne'),
+        burzaTitle: text('Tytuł', pc('inicjatywy-burza').title),
+        burzaText: editor('Tekst', html('inicjatywy-burza')),
+        burzaImage: image('Zdjęcie'),
+      },
+      'Ramka na dole': {
+        noteKicker: text('Napis nad tytułem', 'Bądź na bieżąco'),
+        noteTitle: text('Tytuł', 'Relacje ze spotkań i warsztatów'),
+        noteText: area('Tekst', 'Zdjęcia, podsumowania i najświeższe wieści z „Bieszczad w eterze”, „Bieszczadzkiej Burzy Mózgów” i innych naszych inicjatyw publikujemy na bieżąco w Aktualnościach.'),
+        noteButton: text('Przycisk', 'Zobacz aktualności'),
+      },
+    },
+  },
+
+  {
+    name: 'strona-kontakt',
+    label: 'Strona: Kontakt',
+    url: '/kontakt',
+    icon: 'Mail',
+    tabs: {
+      Nagłówek: {
+        heroKicker: text('Napis nad tytułem', 'Kontakt'),
+        heroTitle: text('Tytuł', pc('kontakt-hero-description').title || 'Skontaktuj się z nami'),
+        heroDescription: editor('Opis', html('kontakt-hero-description')),
+        stats: area('Napisy pod tytułem', pc('kontakt-stats').body, 'Jeden napis w linii.'),
+        pageTitle: text('Tytuł w karcie przeglądarki', 'Kontakt'),
+      },
+      Formularz: {
+        formTitle: text('Tytuł formularza', 'Formularz kontaktowy'),
+        formSuccess: area('Po wysłaniu', 'Dziękujemy! Twoja wiadomość została zapisana — odpowiemy najszybciej, jak to możliwe.', undefined, 2),
+        formName: text('Pole: imię i nazwisko', 'Imię i nazwisko'),
+        formNamePlaceholder: text('Podpowiedź w polu imienia', 'Jan Kowalski'),
+        formEmail: text('Pole: e-mail', 'Adres e-mail'),
+        formEmailPlaceholder: text('Podpowiedź w polu e-mail', 'jan@przyklad.pl'),
+        formMessage: text('Pole: wiadomość', 'Wiadomość'),
+        formMessagePlaceholder: text('Podpowiedź w polu wiadomości', 'W czym możemy pomóc?'),
+        formSubmit: text('Przycisk wysyłania', 'Wyślij wiadomość'),
+      },
+      'Dane kontaktowe': {
+        infoTitle: text('Nagłówek danych', 'Stowarzyszenie Nowoczesne Bieszczady'),
+        socialTitle: text('Nagłówek mediów społecznościowych', 'Social media'),
+      },
+    },
+  },
+
+  {
+    name: 'strona-o-nas',
+    label: 'Strona: O nas',
+    url: '/o-nas/misja',
+    icon: 'Users',
+    tabs: {
+      Nagłówek: {
+        heroKicker: text('Napis nad tytułem', 'Stowarzyszenie'),
+        heroTitle: text('Tytuł', pc('onas-hero-description').title || 'O nas'),
+        heroDescription: editor('Opis', html('onas-hero-description')),
+        stats: area('Napisy pod tytułem', pc('onas-stats').body, 'Jeden napis w linii.'),
+      },
+      'Kim jesteśmy / Misja': {
+        misjaTitle: text('Tytuł', 'Kim jesteśmy / Nasza Misja'),
+        misjaText: editor('Tekst', html('misja-body')),
+        misjaPageTitle: text('Tytuł w karcie przeglądarki', 'Kim jesteśmy'),
+      },
+      Cele: {
+        celeTitle: text('Tytuł', 'Cele Stowarzyszenia'),
+        celeText: editor('Wstęp', html('cele-intro')),
+      },
+      Statut: {
+        statutTitle: text('Tytuł', 'Statut Stowarzyszenia'),
+        statutText: editor('Wstęp', html('statut-intro')),
+        statutFile: file('Plik statutu (PDF)', 'Wgraj plik — przyciski „Pobierz” i „Otwórz” będą go używać.'),
+        statutDownload: text('Przycisk pobierania', 'Pobierz Statut (PDF)'),
+        statutOpen: text('Przycisk otwierania', 'Otwórz w nowej karcie'),
+        statutHint: text('Podpowiedź nad stronami', 'Kliknij stronę, żeby ją powiększyć.'),
+      },
+      Deklaracja: {
+        deklaracjaTitle: text('Tytuł', 'Deklaracja członkowska'),
+        deklaracjaText: editor('Wstęp', html('deklaracja-intro')),
+        deklaracjaFile: file('Plik deklaracji (PDF)', 'Gdy plik jest wgrany, pokazuje się przycisk pobierania.'),
+        deklaracjaDownload: text('Przycisk pobierania', 'Pobierz deklarację (PDF)'),
+        deklaracjaSoon: text('Gdy pliku jeszcze nie ma', 'Formularz wkrótce dostępny'),
+        deklaracjaStep1: text('Krok 1', 'Pobierz i wypełnij formularz deklaracji.'),
+        deklaracjaStep2: text('Krok 2', 'Podpisz dokument odręcznie lub elektronicznie.'),
+        deklaracjaStep3: text('Krok 3', 'Prześlij skan na {email} lub dostarcz osobiście.', 'Strona sama wstawi adres e-mail z „Elementów wspólnych” w miejsce {email}.'),
+      },
+      'Zarząd i Zespół': {
+        zarzadTitle: text('Tytuł', 'Zarząd i Zespół'),
+        zarzadText: editor('Wstęp', html('zarzad-intro')),
+      },
+      Sprawozdania: {
+        sprawozdaniaTitle: text('Tytuł', 'Sprawozdania i transparentność'),
+        sprawozdaniaText: editor('Wstęp', html('sprawozdania-intro')),
+        sprawozdaniaDownload: text('Przycisk pobierania', 'Pobierz PDF'),
+        sprawozdaniaSoon: text('Gdy pliku jeszcze nie ma', 'PDF wkrótce'),
+      },
+      Partnerzy: {
+        partnerzyTitle: text('Tytuł', 'Partnerzy i Grantodawcy'),
+        partnerzyText: editor('Wstęp', html('partnerzy-intro')),
+      },
+      Wolontariat: {
+        wolontariatEmpty: area('Gdy opis wolontariatu jest pusty', 'Wkrótce zamieścimy tutaj informacje o wolontariacie w Stowarzyszeniu Nowoczesne Bieszczady.', 'Sam tytuł, opis i dokumenty edytujesz w formularzu „Wolontariat”.', 2),
+        wolontariatOpen: text('Przycisk przy dokumencie', 'Pobierz / zobacz'),
+      },
+    },
+  },
+
+  {
+    name: 'dream-map-settings',
+    label: 'Strona: Ustrzyki 2036 (Mapa Marzeń)',
+    url: '/ustrzyki-2036',
+    icon: 'Star',
+    tabs: {
+      'Mapa nieba': {
+        heroImage: image('Zdjęcie tła (nocne niebo)'),
+        skyTitle: text('Tytuł — pierwsza część', 'Cyfrowa Mapa'),
+        skyTitleAccent: text('Tytuł — wyróżniona część', 'Marzeń'),
+        skySubtitle: text('Podtytuł', 'Ustrzyki Dolne 2036 — Warsztat Przyszłości'),
+        skyInfoButton: text('Przycisk informacji', 'O projekcie'),
+        skyInfoTitle: text('Okienko „O projekcie” — tytuł', 'O projekcie'),
+        skyInfoText: editor('Okienko „O projekcie” — tekst', '<p>Bieszczady to jedno z najciemniejszych miejsc na mapie Polski. Mieszkańcy Ustrzyk Dolnych spojrzeli w to niebo i rozłożyli na nim swoje marzenia o mieście za dekadę.</p><p>Każda gwiazda to postulat zgłoszony podczas warsztatów „Ustrzyki 2036: Warsztat Przyszłości”. Gwiazdozbiory łączą postulaty w kategorie tematyczne — kliknij gwiazdę, by poznać szczegóły.</p>'),
+        skyInfoAuthor: text('Okienko — podpis', 'Stowarzyszenie Nowoczesne Bieszczady'),
+        skyInfoFooter: text('Okienko — stopka', 'Projekt „Ustrzyki 2036: Warsztat Przyszłości” • 3 warsztaty kreatywne • {liczba} postulatów mieszkańców', COUNT),
+        filterAll: text('Filtr „wszystkie”', 'Wszystkie'),
+        filterCount: text('Licznik w filtrze', '{liczba} postulatów', COUNT),
+        challengeLabel: text('Etykieta wyzwania', 'Wyzwanie'),
+        solutionLabel: text('Etykieta rozwiązania', 'Propozycja rozwiązania'),
+        pageTitle: text('Tytuł w karcie przeglądarki', 'Ustrzyki 2036: Warsztat Przyszłości'),
+      },
+      'Skąd wzięła się mapa': {
+        aboutKicker: text('Napis nad tytułem', 'Ustrzyki 2036: Warsztat Przyszłości'),
+        aboutTitle: text('Tytuł', 'Skąd wzięła się ta mapa'),
+        aboutImage: image('Zdjęcie'),
+        aboutText: editor('Tekst', '<p>Inicjatywa „Ustrzyki 2036: Warsztat Przyszłości” to autorski projekt realizowany przez Stowarzyszenie Nowoczesne Bieszczady we współpracy z lokalnymi partnerami: Centrum Koordynacji i Wspierania Aktywności Społeczno-Gospodarczej w Stefkowej oraz Powiatowym Urzędem Pracy w Ustrzykach Dolnych.</p><p>Główną intencją projektu było odejście od tradycyjnych, często biernych formuł konsultacji społecznych na rzecz stworzenia przestrzeni realnego, żywego i twórczego współdecydowania. Chcieliśmy dać mieszkańcom narzędzie do kształtowania przestrzeni publicznej oraz budowania poczucia sprawstwa — udowadniając, że głos każdego z nas ma znaczenie.</p><p>Prezentowana Cyfrowa Mapa Marzeń jest bezpośrednim owocem procesu konsultacji społecznych i pracy warsztatowej. Przy jednym stole usiedli przedstawiciele bardzo różnych środowisk — od seniorów dzielących się mądrością życiową, przez lokalnych liderów i członków organizacji pozarządowych, aż po młodzież z Młodzieżowej Rady Gminy.</p><p>Niniejsza mapa nie jest katalogiem roszczeń ani formą krytyki dotychczasowych działań. Jest głosem troski, dojrzałej odpowiedzialności oraz autentycznej miłości do naszej małej ojczyzny. Traktujemy wypracowane postulaty jako partnerskie zaproszenie do dialogu.</p>'),
+        fundingNote: area('Informacja o finansowaniu', 'Inicjatywa jest współfinansowana ze środków otrzymanych od Narodowego Instytutu Wolności — Centrum Rozwoju Społeczeństwa Obywatelskiego w ramach Rządowego Programu Fundusz Inicjatyw Obywatelskich NOWEFIO na lata 2021–2030, za pośrednictwem Stowarzyszenia „Pro Carpathia”.', undefined, 4),
+        fundingLogo1: image('Logo finansowania 1', 'NIW / NOWEFIO'),
+        fundingLogo2: image('Logo finansowania 2', 'Pro Carpathia'),
+      },
+      'Lista postulatów': {
+        boardCount: text('Napis nad tytułem', '{liczba} postulatów mieszkańców', COUNT),
+        boardTitle: text('Tytuł', 'Wszystkie punkty mapy marzeń'),
+        boardLead: area('Opis', 'Pełna lista wniosków i rekomendacji z warsztatów „Ustrzyki 2036” — wyzwanie i proponowane rozwiązanie przy każdym punkcie.', undefined, 2),
+      },
+      'Zgłoś pomysł': {
+        ideaKicker: text('Napis nad tytułem', pc('dream-map-form-kicker').title || 'Twój głos'),
+        ideaTitle: text('Tytuł', pc('dream-map-form-intro').title || 'Zgłoś swój pomysł'),
+        ideaText: area('Opis', pc('dream-map-form-intro').body, undefined, 2),
+        ideaTileLink: text('Link na kafelku', 'Zgłoś pomysł →'),
+        ideaField1: text('Pole 1', '1. Tytuł pomysłu'),
+        ideaField2: text('Pole 2', '2. Opis problemu do rozwiązania'),
+        ideaField3: text('Pole 3', '3. Propozycja rozwiązania / Twój pomysł'),
+        ideaField4: text('Pole 4', '4. Kontakt (e-mail lub telefon)'),
+        ideaSubmit: text('Przycisk wysyłania', 'Wyślij pomysł'),
+        ideaSending: text('Podczas wysyłania', 'Wysyłanie…'),
+        ideaError: text('Gdy się nie uda', 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie za chwilę.'),
+        ideaSuccessTitle: text('Po wysłaniu — tytuł', pc('dream-map-form-success').title || 'Dziękujemy!'),
+        ideaSuccessText: area('Po wysłaniu — tekst', pc('dream-map-form-success').body, undefined, 2),
+        ideaAgain: text('Przycisk kolejnego zgłoszenia', 'Zgłoś kolejny pomysł'),
+      },
+    },
+  },
+]
+
+export { color }

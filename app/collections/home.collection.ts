@@ -1,22 +1,31 @@
+// WYGENEROWANE z scripts/page-texts/spec.mjs — nie edytuj ręcznie.
+// Zmiany: popraw spec.mjs i uruchom `node scripts/page-texts/generate.mjs`.
 import { defineCollection } from '#pruvious'
 
 export default defineCollection({
-  name: 'home',
+  name: "home",
   mode: 'single',
-  label: { collection: { plural: 'strona główna', singular: 'strona główna' } },
+  label: { collection: { plural: "Strona: Główna", singular: "Strona: Główna" } },
   apiRoutes: { read: 'public' },
+  dashboard: {
+    icon: "Home",
+    fieldLayout: [{"Nagłówek ze zdjęciem":["heroImage","heroKicker","heroTitle","heroSubtitle","heroCta","heroCtaHref"],"Krótko o nas":["aboutKicker","aboutTitle","aboutParagraph1","aboutParagraph2","aboutTagline","aboutImage"],"Najnowsze aktualności":["newsKicker","newsTitle","newsAllLink"]}],
+  },
   fields: {
-    heroImage: { type: 'image', options: { required: false, label: 'Zdjęcie tła (hero)' } },
-    heroKicker: { type: 'text', options: { required: false, default: 'Ustrzyki Dolne · Bieszczady' } },
-    heroTitle: { type: 'text', options: { required: true, default: 'NOWOCZESNE BIESZCZADY' } },
-    heroSubtitle: { type: 'text-area', options: { required: true, rows: 2, default: 'Tworzymy wydarzenia, konkursy i inicjatywy, które budują tożsamość regionu.' } },
-    heroCta: { type: 'text', options: { required: false, default: 'Dowiedz się więcej' } },
-    heroCtaHref: { type: 'text', options: { required: false, default: '/o-nas/misja' } },
-    aboutKicker: { type: 'text', options: { required: false, default: 'Stowarzyszenie' } },
-    aboutTitle: { type: 'text', options: { required: false, default: 'Krótko o nas' } },
-    aboutParagraph1: { type: 'text-area', options: { required: true, rows: 3 } },
-    aboutParagraph2: { type: 'text-area', options: { required: true, rows: 3 } },
-    aboutTagline: { type: 'text', options: { required: false, default: '„SKUTECZNI DLA WAS”' } },
-    aboutImage: { type: 'image', options: { required: false, label: 'Zdjęcie' } },
+    heroImage: { type: 'image', options: {"required":false,"label":"Zdjęcie tła","description":"Duże zdjęcie na samej górze strony głównej."} },
+    heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Ustrzyki Dolne · Bieszczady"} },
+    heroTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"NOWOCZESNE BIESZCZADY"} },
+    heroSubtitle: { type: 'text-area', options: {"required":false,"label":"Podtytuł","default":"Tworzymy wydarzenia, konkursy i inicjatywy, które budują tożsamość regionu.","rows":2} },
+    heroCta: { type: 'text', options: {"required":false,"label":"Napis na przycisku","default":"Dowiedz się więcej"} },
+    heroCtaHref: { type: 'text', options: {"required":false,"label":"Dokąd prowadzi przycisk","default":"/o-nas/misja","placeholder":"np. /aktualnosci albo https://…"} },
+    aboutKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Stowarzyszenie"} },
+    aboutTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Krótko o nas"} },
+    aboutParagraph1: { type: 'text-area', options: {"required":false,"label":"Tekst — część 1","description":"Pytanie na końcu linii (?) = śródtytuł, linia od emoji = karta „filaru”, linia z wcięciem = punkt w karcie.","rows":10} },
+    aboutParagraph2: { type: 'text-area', options: {"required":false,"label":"Tekst — część 2","rows":4} },
+    aboutTagline: { type: 'text', options: {"required":false,"label":"Hasło na zdjęciu","default":"„SKUTECZNI DLA WAS”"} },
+    aboutImage: { type: 'image', options: {"required":false,"label":"Zdjęcie","description":"Szeroka panorama w środku sekcji."} },
+    newsKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Blog"} },
+    newsTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Najnowsze aktualności"} },
+    newsAllLink: { type: 'text', options: {"required":false,"label":"Link do wszystkich","default":"Zobacz wszystkie aktualności"} },
   },
 })

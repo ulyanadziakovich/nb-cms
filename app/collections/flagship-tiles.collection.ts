@@ -16,6 +16,11 @@ export default defineCollection({
     back: { type: 'text-area', options: { required: true, label: 'Tekst na odwrocie kafelka', rows: 3 } },
     image: { type: 'image', options: { required: true, label: 'Zdjęcie' } },
     moreHref: { type: 'text', options: { required: true, label: 'Link "Więcej"' } },
+    tags: {
+      type: 'text-area',
+      options: { required: false, label: 'Etykiety na kafelku', description: 'Jedna etykieta w linii, np. „Pliki GPX”.', rows: 2 },
+    },
+    ctaLabel: { type: 'text', options: { required: false, label: 'Napis na przycisku', placeholder: 'np. Zobacz trasy' } },
     order: { type: 'number', options: { required: false, default: 0, label: 'Kolejność wyświetlania' } },
   },
 })

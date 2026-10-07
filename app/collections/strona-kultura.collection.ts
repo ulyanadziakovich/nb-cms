@@ -1,0 +1,47 @@
+// WYGENEROWANE z scripts/page-texts/spec.mjs — nie edytuj ręcznie.
+// Zmiany: popraw spec.mjs i uruchom `node scripts/page-texts/generate.mjs`.
+import { defineCollection } from '#pruvious'
+
+export default defineCollection({
+  name: "strona-kultura",
+  mode: 'single',
+  label: { collection: { plural: "Strona: Kultura", singular: "Strona: Kultura" } },
+  apiRoutes: { read: 'public' },
+  dashboard: {
+    icon: "Photo",
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statEditions","statContests","statExtra","pageTitle"],"Pasek z liczbami":["barEditionsLabel","barContestsLabel","stats"],"Festiwal":["festivalKicker","festivalTitle","festivalLead","editionNewest","editionLink","announcementImage","announcementBadge","announcementText","upcomingKicker","upcomingTitle","upcomingText","upcomingButton"],"Konkursy":["contestsKicker","contestsTitle","documentsTitle","documentPreview","documentDownload","contestsLink"],"Strona edycji":["editionKicker","editionBack","editionNotFound"]}],
+  },
+  fields: {
+    heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Kultura"} },
+    heroTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Kultura i wydarzenia – pokazujemy Bieszczady z innej strony"} },
+    heroDescription: { type: 'editor', options: {"required":false,"label":"Opis","default":"<p>Bieszczady to nie tylko góry, szlaki i piękna przyroda. To również kultura, ludzie, muzyka, fotografia i wydarzenia, dzięki którym można odkrywać nasz region na wiele różnych sposobów.</p><p>Jako Stowarzyszenie Nowoczesne Bieszczady od kilku lat organizujemy wydarzenia, konkursy i spotkania, których wspólnym celem jest promocja Bieszczad i zachęcanie do ich poznawania. Chcemy, aby osoby, które przyjeżdżają tutaj po raz pierwszy – na koncert, konkurs, wystawę czy wydarzenie sportowe – zakochały się w Bieszczadach i miały powód, żeby do nas wracać.</p><p>Jednym z naszych najważniejszych przedsięwzięć jest konkurs fotograficzny „Kocham Bieszczady”, którego w 2026 roku organizujemy już czwartą edycję. Co roku otrzymujemy fotografie pokazujące niezwykłe krajobrazy, przyrodę i charakter naszego regionu. Prezentujemy je w mediach społecznościowych, organizujemy wystawy pokonkursowe, a najlepsze prace trafiają również do wydawanych przez nas kalendarzy.</p><p>Ważnym wydarzeniem stał się także festiwal „Granie Bez Granic”. Za nami już dwie edycje imprezy, której termin nie jest przypadkowy. Organizujemy ją w lipcu, chcąc dodatkowo pobudzić ruch turystyczny w okresie, kiedy sezon w rejonie Ustrzyk Dolnych dopiero nabiera rozpędu. Festiwal ma przyciągać gości spoza regionu, ale jednocześnie być atrakcyjnym wydarzeniem dla mieszkańców Bieszczadów.</p><p>W 2025 roku po raz pierwszy sięgnęliśmy również po inną formę artystycznego pokazania naszego regionu, organizując konkurs malarski „Piękno Bieszczadów – sakralnie i pejzażowo”. Było to dla nas nowe wyzwanie, które pokazało, jak wiele możliwości daje łączenie promocji Bieszczad ze sztuką i twórczością.</p><p>Każde z tych przedsięwzięć jest inne, ale wszystkie łączy jeden cel – chcemy pokazywać Bieszczady, tworzyć powody do przyjazdu i sprawiać, żeby ludzie chcieli tutaj wracać.</p><p>Bo w Bieszczadach można zakochać się na szlaku, ale można też poprzez fotografię, obraz, muzykę i wspólnie przeżywane wydarzenia.</p>","toolbar":["heading2","heading3","paragraph","bold","italic","link","bulletList","orderedList","blockquote","clear","undo","redo"]} },
+    statEditions: { type: 'text', options: {"required":false,"label":"Licznik edycji (pod tytułem)","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"{liczba} edycji festiwalu"} },
+    statContests: { type: 'text', options: {"required":false,"label":"Licznik konkursów (pod tytułem)","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"{liczba} cykliczne konkursy"} },
+    statExtra: { type: 'text', options: {"required":false,"label":"Trzeci napis pod tytułem","default":"Wydarzenia co roku"} },
+    pageTitle: { type: 'text', options: {"required":false,"label":"Tytuł w karcie przeglądarki","default":"Kultura i wydarzenia"} },
+    barEditionsLabel: { type: 'text', options: {"required":false,"label":"Podpis liczby edycji","default":"Edycji festiwalu"} },
+    barContestsLabel: { type: 'text', options: {"required":false,"label":"Podpis liczby konkursów","default":"Konkursy cykliczne"} },
+    stats: { type: 'text-area', options: {"required":false,"label":"Pozostałe liczby","description":"Jedna pozycja w linii, w formie „Podpis: wartość”.","default":"Wykonawców w 2025: 20+\nScen na festiwalu: 3","rows":3} },
+    festivalKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Festiwal Granie Bez Granic"} },
+    festivalTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Archiwum edycji"} },
+    festivalLead: { type: 'text-area', options: {"required":false,"label":"Opis","default":"Muzyczne wydarzenie łączące kultury i pokolenia — zobacz relacje z poprzednich edycji festiwalu.","rows":2} },
+    editionNewest: { type: 'text', options: {"required":false,"label":"Oznaczenie najnowszej edycji","default":"Najnowsza"} },
+    editionLink: { type: 'text', options: {"required":false,"label":"Link na karcie edycji","default":"Zobacz opis i galerię →"} },
+    announcementImage: { type: 'image', options: {"required":false,"label":"Zapowiedź — plakat","description":"Karta zapowiedzi obok edycji. Bez plakatu karta się nie pokazuje."} },
+    announcementBadge: { type: 'text', options: {"required":false,"label":"Zapowiedź — oznaczenie","default":"Zapowiedź"} },
+    announcementText: { type: 'text-area', options: {"required":false,"label":"Zapowiedź — tekst","default":"Z dumą zapraszamy na Festiwal „Granie Bez Granic” — nowe wydarzenie, którego jesteśmy organizatorem. Połączenie koncertów, astronomii i ekologii, w sercu Ustrzyk Dolnych, tam gdzie niebo naprawdę jest ciemne.","rows":3} },
+    upcomingKicker: { type: 'text', options: {"required":false,"label":"Nadchodząca edycja — napis","default":"Nadchodząca edycja"} },
+    upcomingTitle: { type: 'text', options: {"required":false,"label":"Nadchodząca edycja — tytuł","default":"III edycja festiwalu „Granie Bez Granic”"} },
+    upcomingText: { type: 'text-area', options: {"required":false,"label":"Nadchodząca edycja — tekst","default":"Termin i program kolejnej edycji ogłosimy wkrótce w zakładce Aktualności.","rows":2} },
+    upcomingButton: { type: 'text', options: {"required":false,"label":"Nadchodząca edycja — przycisk","default":"Śledź aktualności"} },
+    contestsKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Konkursy"} },
+    contestsTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Konkursy fotograficzne i malarskie"} },
+    documentsTitle: { type: 'text', options: {"required":false,"label":"Nagłówek dokumentów","default":"Dokumenty do pobrania"} },
+    documentPreview: { type: 'text', options: {"required":false,"label":"Przycisk podglądu","default":"Podgląd"} },
+    documentDownload: { type: 'text', options: {"required":false,"label":"Przycisk pobierania","default":"Pobierz"} },
+    contestsLink: { type: 'text', options: {"required":false,"label":"Link pod konkursem","default":"Śledź aktualności →"} },
+    editionKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Festiwal Granie Bez Granic"} },
+    editionBack: { type: 'text', options: {"required":false,"label":"Link powrotu","default":"← Wróć do Kultury"} },
+    editionNotFound: { type: 'text', options: {"required":false,"label":"Gdy edycji nie ma","default":"Nie znaleziono edycji"} },
+  },
+})
