@@ -11,7 +11,7 @@ export default defineNuxtConfig({
 
   // Adres strony, na którą prowadzi przycisk „Zobacz na stronie” w panelu.
   runtimeConfig: {
-    public: { siteUrl: 'https://nowoczesnebieszczady.pl' },
+    public: { siteUrl: 'https://nowoczesneb.vercel.app' },
   },
 
   // pruvious.jwt.secretKey is intentionally NOT set here — Pruvious reads it from the
