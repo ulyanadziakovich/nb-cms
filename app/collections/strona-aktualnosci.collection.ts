@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "News",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statPostsOne","statPostsFew","statPostsMany","statExtra","filterAll","pageTitle"],"Pojedynczy wpis":["galleryTitle","photosOne","photosFew","photosMany","backLink","notFound"]}],
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statPostsOne","statPostsFew","statPostsMany","statExtra","filterAll","pageTitle"],"Pojedynczy wpis":["galleryTitle","photosOne","photosFew","photosMany","backLink","notFound"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
   },
   fields: {
     heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Blog"} },
@@ -28,5 +28,11 @@ export default defineCollection({
     photosMany: { type: 'text', options: {"required":false,"label":"Licznik: 5 i więcej zdjęć","description":"Strona sama wstawi liczbę w miejsce {liczba}.","default":"{liczba} zdjęć"} },
     backLink: { type: 'text', options: {"required":false,"label":"Link powrotu","default":"← Wróć do aktualności"} },
     notFound: { type: 'text', options: {"required":false,"label":"Gdy wpisu nie ma","default":"Nie znaleziono wpisu"} },
+    themeBackground: { type: 'color', options: {"required":false,"label":"Tło strony","description":"Tło całej treści tej podstrony.","default":""} },
+    themeHero: { type: 'color', options: {"required":false,"label":"Tło nagłówka","description":"Tło górnej części z tytułem podstrony.","default":""} },
+    themeTitle: { type: 'color', options: {"required":false,"label":"Tytuły i nagłówki","description":"Tytuł podstrony, tytuły sekcji i kart.","default":""} },
+    themeLead: { type: 'color', options: {"required":false,"label":"Opisy wyróżnione (wstępy)","description":"Pierwszy akapit opisów i teksty pod tytułami sekcji.","default":""} },
+    themeBody: { type: 'color', options: {"required":false,"label":"Zwykły tekst","description":"Akapity w opisach i na kartach.","default":""} },
+    themeAccent: { type: 'color', options: {"required":false,"label":"Akcent: przyciski, linki, napisy nad tytułami","default":""} },
   },
 })

@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Mail",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","stats","pageTitle"],"Formularz":["formTitle","formSuccess","formName","formNamePlaceholder","formEmail","formEmailPlaceholder","formMessage","formMessagePlaceholder","formSubmit"],"Dane kontaktowe":["infoTitle","socialTitle"]}],
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","stats","pageTitle"],"Formularz":["formTitle","formSuccess","formName","formNamePlaceholder","formEmail","formEmailPlaceholder","formMessage","formMessagePlaceholder","formSubmit"],"Dane kontaktowe":["infoTitle","socialTitle"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
   },
   fields: {
     heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Kontakt"} },
@@ -29,5 +29,11 @@ export default defineCollection({
     formSubmit: { type: 'text', options: {"required":false,"label":"Przycisk wysyłania","default":"Wyślij wiadomość"} },
     infoTitle: { type: 'text', options: {"required":false,"label":"Nagłówek danych","default":"Stowarzyszenie Nowoczesne Bieszczady"} },
     socialTitle: { type: 'text', options: {"required":false,"label":"Nagłówek mediów społecznościowych","default":"Social media"} },
+    themeBackground: { type: 'color', options: {"required":false,"label":"Tło strony","description":"Tło całej treści tej podstrony.","default":""} },
+    themeHero: { type: 'color', options: {"required":false,"label":"Tło nagłówka","description":"Tło górnej części z tytułem podstrony.","default":""} },
+    themeTitle: { type: 'color', options: {"required":false,"label":"Tytuły i nagłówki","description":"Tytuł podstrony, tytuły sekcji i kart.","default":""} },
+    themeLead: { type: 'color', options: {"required":false,"label":"Opisy wyróżnione (wstępy)","description":"Pierwszy akapit opisów i teksty pod tytułami sekcji.","default":""} },
+    themeBody: { type: 'color', options: {"required":false,"label":"Zwykły tekst","description":"Akapity w opisach i na kartach.","default":""} },
+    themeAccent: { type: 'color', options: {"required":false,"label":"Akcent: przyciski, linki, napisy nad tytułami","default":""} },
   },
 })

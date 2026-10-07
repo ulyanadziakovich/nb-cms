@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Settings",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Kontakt":["logo","email","phone","address","facebookUrl","facebookLabel"],"Stopka":["footerTitle","footerTagline","footerDownloads","footerCopyright"],"Karty i przyciski":["readMore","relatedKicker","relatedTitle","relatedAll","siteName"],"Galerie":["galleryShowAll","gallerySwipe","galleryExpand","galleryCollapse"],"Wygląd strony":["colorTitle","colorLead","colorBody","colorExtra","colorAccent","colorBrand","colorInk","colorBackground","colorSection","colorEasy","colorMedium","colorHard"],"Trasy — nazwy":["difficultyEasy","difficultyMedium","difficultyHard","bikeMtb","bikeGravel","bikeEbike","bikeRoad","cardElevation"]}],
+    fieldLayout: [{"Kontakt":["logo","email","phone","address","facebookUrl","facebookLabel"],"Stopka":["footerTitle","footerTagline","footerDownloads","footerCopyright"],"Karty i przyciski":["readMore","relatedKicker","relatedTitle","relatedAll","siteName"],"Galerie":["galleryShowAll","gallerySwipe","galleryExpand","galleryCollapse"],"Wygląd strony":["<./app/dashboard/ThemePreview.vue>","colorTitle","colorLead","colorBody","colorExtra","colorAccent","colorBrand","colorInk","colorBackground","colorSection","colorEasy","colorMedium","colorHard"],"Trasy — nazwy":["difficultyEasy","difficultyMedium","difficultyHard","bikeMtb","bikeGravel","bikeEbike","bikeRoad","cardElevation"]}],
   },
   fields: {
     logo: { type: 'image', options: {"required":false,"label":"Logo (ikona)","description":"W nagłówku i stopce."} },

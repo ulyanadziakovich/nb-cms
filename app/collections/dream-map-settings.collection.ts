@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Star",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Mapa nieba":["heroImage","skyTitle","skyTitleAccent","skySubtitle","skyInfoButton","skyInfoTitle","skyInfoText","skyInfoAuthor","skyInfoFooter","filterAll","filterCount","challengeLabel","solutionLabel","pageTitle"],"Skąd wzięła się mapa":["aboutKicker","aboutTitle","aboutImage","aboutText","fundingNote","fundingLogo1","fundingLogo2"],"Lista postulatów":["boardCount","boardTitle","boardLead"],"Zgłoś pomysł":["ideaKicker","ideaTitle","ideaText","ideaTileLink","ideaField1","ideaField2","ideaField3","ideaField4","ideaSubmit","ideaSending","ideaError","ideaSuccessTitle","ideaSuccessText","ideaAgain"]}],
+    fieldLayout: [{"Mapa nieba":["heroImage","skyTitle","skyTitleAccent","skySubtitle","skyInfoButton","skyInfoTitle","skyInfoText","skyInfoAuthor","skyInfoFooter","filterAll","filterCount","challengeLabel","solutionLabel","pageTitle"],"Skąd wzięła się mapa":["aboutKicker","aboutTitle","aboutImage","aboutText","fundingNote","fundingLogo1","fundingLogo2"],"Lista postulatów":["boardCount","boardTitle","boardLead"],"Zgłoś pomysł":["ideaKicker","ideaTitle","ideaText","ideaTileLink","ideaField1","ideaField2","ideaField3","ideaField4","ideaSubmit","ideaSending","ideaError","ideaSuccessTitle","ideaSuccessText","ideaAgain"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
   },
   fields: {
     heroImage: { type: 'image', options: {"required":false,"label":"Zdjęcie tła (nocne niebo)"} },
@@ -51,5 +51,11 @@ export default defineCollection({
     ideaSuccessTitle: { type: 'text', options: {"required":false,"label":"Po wysłaniu — tytuł","default":"Dziękujemy!"} },
     ideaSuccessText: { type: 'text-area', options: {"required":false,"label":"Po wysłaniu — tekst","default":"Twój pomysł do nas dotarł. Skontaktujemy się, jeśli będziemy mieli pytania.","rows":2} },
     ideaAgain: { type: 'text', options: {"required":false,"label":"Przycisk kolejnego zgłoszenia","default":"Zgłoś kolejny pomysł"} },
+    themeBackground: { type: 'color', options: {"required":false,"label":"Tło strony","description":"Tło całej treści tej podstrony.","default":""} },
+    themeHero: { type: 'color', options: {"required":false,"label":"Tło nagłówka","description":"Tło górnej części z tytułem podstrony.","default":""} },
+    themeTitle: { type: 'color', options: {"required":false,"label":"Tytuły i nagłówki","description":"Tytuł podstrony, tytuły sekcji i kart.","default":""} },
+    themeLead: { type: 'color', options: {"required":false,"label":"Opisy wyróżnione (wstępy)","description":"Pierwszy akapit opisów i teksty pod tytułami sekcji.","default":""} },
+    themeBody: { type: 'color', options: {"required":false,"label":"Zwykły tekst","description":"Akapity w opisach i na kartach.","default":""} },
+    themeAccent: { type: 'color', options: {"required":false,"label":"Akcent: przyciski, linki, napisy nad tytułami","default":""} },
   },
 })

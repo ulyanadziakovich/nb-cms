@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Home",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Nagłówek ze zdjęciem":["heroImage","heroKicker","heroTitle","heroSubtitle","heroCta","heroCtaHref"],"Kafelki pod nagłówkiem":["tiles"],"Krótko o nas":["aboutKicker","aboutTitle","aboutParagraph1","aboutParagraph2","aboutTagline","aboutImage"],"Najnowsze aktualności":["newsKicker","newsTitle","newsAllLink"]}],
+    fieldLayout: [{"Nagłówek ze zdjęciem":["heroImage","heroKicker","heroTitle","heroSubtitle","heroCta","heroCtaHref"],"Kafelki pod nagłówkiem":["tiles"],"Krótko o nas":["aboutKicker","aboutTitle","aboutParagraph1","aboutParagraph2","aboutTagline","aboutImage"],"Najnowsze aktualności":["newsKicker","newsTitle","newsAllLink"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
   },
   fields: {
     heroImage: { type: 'image', options: {"required":false,"label":"Zdjęcie tła","description":"Duże zdjęcie na samej górze strony głównej."} },
@@ -29,5 +29,11 @@ export default defineCollection({
     newsKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Blog"} },
     newsTitle: { type: 'text', options: {"required":false,"label":"Tytuł","default":"Najnowsze aktualności"} },
     newsAllLink: { type: 'text', options: {"required":false,"label":"Link do wszystkich","default":"Zobacz wszystkie aktualności"} },
+    themeBackground: { type: 'color', options: {"required":false,"label":"Tło strony","description":"Tło całej treści tej podstrony.","default":""} },
+    themeHero: { type: 'color', options: {"required":false,"label":"Tło nagłówka","description":"Tło górnej części z tytułem podstrony.","default":""} },
+    themeTitle: { type: 'color', options: {"required":false,"label":"Tytuły i nagłówki","description":"Tytuł podstrony, tytuły sekcji i kart.","default":""} },
+    themeLead: { type: 'color', options: {"required":false,"label":"Opisy wyróżnione (wstępy)","description":"Pierwszy akapit opisów i teksty pod tytułami sekcji.","default":""} },
+    themeBody: { type: 'color', options: {"required":false,"label":"Zwykły tekst","description":"Akapity w opisach i na kartach.","default":""} },
+    themeAccent: { type: 'color', options: {"required":false,"label":"Akcent: przyciski, linki, napisy nad tytułami","default":""} },
   },
 })

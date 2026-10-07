@@ -57,6 +57,7 @@ export default [
     name: 'site-settings',
     label: 'Elementy wspólne i kontakt',
     icon: 'Settings',
+    layoutExtras: { 'Wygląd strony': ['<./app/dashboard/ThemePreview.vue>'] },
     tabs: {
       Kontakt: {
         logo: image('Logo (ikona)', 'W nagłówku i stopce.'),

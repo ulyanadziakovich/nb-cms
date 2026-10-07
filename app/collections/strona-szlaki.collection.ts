@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Map",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statTrailsOne","statTrailsFew","statTrailsMany","statLength","statLevels","pageTitle"],"Mapa tras":["mapKicker","mapTitle","mapLead","mapLoading","mapHint","mapError","mapPopupLink"],"Filtry i lista":["filterDifficulty","filterBike","filterAll","filterLength","filterReset","resultsOne","resultsFew","resultsMany","emptyText","emptyReset","cardCta"],"Ramka o projekcie":["noteKicker","noteText"]}],
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statTrailsOne","statTrailsFew","statTrailsMany","statLength","statLevels","pageTitle"],"Mapa tras":["mapKicker","mapTitle","mapLead","mapLoading","mapHint","mapError","mapPopupLink"],"Filtry i lista":["filterDifficulty","filterBike","filterAll","filterLength","filterReset","resultsOne","resultsFew","resultsMany","emptyText","emptyReset","cardCta"],"Ramka o projekcie":["noteKicker","noteText"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
   },
   fields: {
     heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Turystyka rowerowa"} },
@@ -42,5 +42,11 @@ export default defineCollection({
     cardCta: { type: 'text', options: {"required":false,"label":"Link na karcie trasy","default":"Zobacz trasę i pobierz GPX"} },
     noteKicker: { type: 'text', options: {"required":false,"label":"Napis nad tekstem","default":"Projekt „Podkarpacka Rowerowa Przygoda”"} },
     noteText: { type: 'text-area', options: {"required":false,"label":"Tekst","default":"Trasy w naszej bazie są sukcesywnie audytowane we współpracy z Województwem Podkarpackim. Każdy audyt obejmuje realny przejazd trasy, dokumentację fotograficzną nawierzchni i widoków, pomiar przewyższeń oraz opis miejsc odpoczynku i punktów gastronomicznych.","rows":4} },
+    themeBackground: { type: 'color', options: {"required":false,"label":"Tło strony","description":"Tło całej treści tej podstrony.","default":""} },
+    themeHero: { type: 'color', options: {"required":false,"label":"Tło nagłówka","description":"Tło górnej części z tytułem podstrony.","default":""} },
+    themeTitle: { type: 'color', options: {"required":false,"label":"Tytuły i nagłówki","description":"Tytuł podstrony, tytuły sekcji i kart.","default":""} },
+    themeLead: { type: 'color', options: {"required":false,"label":"Opisy wyróżnione (wstępy)","description":"Pierwszy akapit opisów i teksty pod tytułami sekcji.","default":""} },
+    themeBody: { type: 'color', options: {"required":false,"label":"Zwykły tekst","description":"Akapity w opisach i na kartach.","default":""} },
+    themeAccent: { type: 'color', options: {"required":false,"label":"Akcent: przyciski, linki, napisy nad tytułami","default":""} },
   },
 })

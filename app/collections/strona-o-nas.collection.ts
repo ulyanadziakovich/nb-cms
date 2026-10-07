@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Users",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","stats"],"Kim jesteśmy / Misja":["misjaTitle","misjaText","misjaPageTitle"],"Cele":["celeTitle","celeText","goals"],"Statut":["statutTitle","statutText","statutFile","statutDownload","statutOpen","statutHint","statutPages"],"Deklaracja":["deklaracjaTitle","deklaracjaText","deklaracjaFile","deklaracjaDownload","deklaracjaSoon","deklaracjaStep1","deklaracjaStep2","deklaracjaStep3"],"Zarząd i Zespół":["zarzadTitle","zarzadText","team"],"Sprawozdania":["sprawozdaniaTitle","sprawozdaniaText","sprawozdaniaDownload","sprawozdaniaSoon"],"Partnerzy":["partnerzyTitle","partnerzyText","partners"],"Wolontariat":["wolontariatTitle","wolontariatText","wolontariatDocs","wolontariatEmpty","wolontariatOpen"]}],
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","stats"],"Kim jesteśmy / Misja":["misjaTitle","misjaText","misjaPageTitle"],"Cele":["celeTitle","celeText","goals"],"Statut":["statutTitle","statutText","statutFile","statutDownload","statutOpen","statutHint","statutPages"],"Deklaracja":["deklaracjaTitle","deklaracjaText","deklaracjaFile","deklaracjaDownload","deklaracjaSoon","deklaracjaStep1","deklaracjaStep2","deklaracjaStep3"],"Zarząd i Zespół":["zarzadTitle","zarzadText","team"],"Sprawozdania":["sprawozdaniaTitle","sprawozdaniaText","sprawozdaniaDownload","sprawozdaniaSoon"],"Partnerzy":["partnerzyTitle","partnerzyText","partners"],"Wolontariat":["wolontariatTitle","wolontariatText","wolontariatDocs","wolontariatEmpty","wolontariatOpen"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
   },
   fields: {
     heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Stowarzyszenie"} },
@@ -53,5 +53,11 @@ export default defineCollection({
     wolontariatDocs: { type: 'repeater', options: { ...{"required":false,"label":"Dokumenty do pobrania","description":"Kliknij „Dodaj dokument”, wpisz nazwę i wgraj plik (np. PDF). Kolejność zmienisz, przeciągając wpisy.","addLabel":"Dodaj dokument"}, subfields: {"label":{"type":"text","options":{"required":true,"label":"Nazwa dokumentu","placeholder":"np. Porozumienie wolontariackie"}},"file":{"type":"file","options":{"required":true,"label":"Plik"}}} } },
     wolontariatEmpty: { type: 'text-area', options: {"required":false,"label":"Gdy opis wolontariatu jest pusty","description":"Pokazuje się, gdy opis powyżej jest pusty.","default":"Wkrótce zamieścimy tutaj informacje o wolontariacie w Stowarzyszeniu Nowoczesne Bieszczady.","rows":2} },
     wolontariatOpen: { type: 'text', options: {"required":false,"label":"Przycisk przy dokumencie","default":"Pobierz / zobacz"} },
+    themeBackground: { type: 'color', options: {"required":false,"label":"Tło strony","description":"Tło całej treści tej podstrony.","default":""} },
+    themeHero: { type: 'color', options: {"required":false,"label":"Tło nagłówka","description":"Tło górnej części z tytułem podstrony.","default":""} },
+    themeTitle: { type: 'color', options: {"required":false,"label":"Tytuły i nagłówki","description":"Tytuł podstrony, tytuły sekcji i kart.","default":""} },
+    themeLead: { type: 'color', options: {"required":false,"label":"Opisy wyróżnione (wstępy)","description":"Pierwszy akapit opisów i teksty pod tytułami sekcji.","default":""} },
+    themeBody: { type: 'color', options: {"required":false,"label":"Zwykły tekst","description":"Akapity w opisach i na kartach.","default":""} },
+    themeAccent: { type: 'color', options: {"required":false,"label":"Akcent: przyciski, linki, napisy nad tytułami","default":""} },
   },
 })

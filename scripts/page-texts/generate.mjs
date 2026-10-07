@@ -50,13 +50,26 @@ function fieldSource(f) {
   }
 }
 
+const PAGE_THEME = {
+  themeBackground: { kind: 'color', label: 'Tło strony', default: '', hint: 'Tło całej treści tej podstrony.' },
+  themeHero: { kind: 'color', label: 'Tło nagłówka', default: '', hint: 'Tło górnej części z tytułem podstrony.' },
+  themeTitle: { kind: 'color', label: 'Tytuły i nagłówki', default: '', hint: 'Tytuł podstrony, tytuły sekcji i kart.' },
+  themeLead: { kind: 'color', label: 'Opisy wyróżnione (wstępy)', default: '', hint: 'Pierwszy akapit opisów i teksty pod tytułami sekcji.' },
+  themeBody: { kind: 'color', label: 'Zwykły tekst', default: '', hint: 'Akapity w opisach i na kartach.' },
+  themeAccent: { kind: 'color', label: 'Akcent: przyciski, linki, napisy nad tytułami', default: '' },
+}
+
 const defaults = {}
 for (const page of spec) {
+  if (page.name !== 'site-settings') {
+    page.layoutExtras = { ...page.layoutExtras, 'Wygląd tej strony': ['<./app/dashboard/ThemePreview.vue>'] }
+    page.tabs = { ...page.tabs, 'Wygląd tej strony': PAGE_THEME }
+  }
   const fields = []
   const layout = {}
   defaults[page.name] = {}
   for (const [tab, tabFields] of Object.entries(page.tabs)) {
-    layout[tab] = Object.keys(tabFields)
+    layout[tab] = [...(page.layoutExtras?.[tab] ?? []), ...Object.keys(tabFields)]
     for (const [key, f] of Object.entries(tabFields)) {
       fields.push(`    ${key}: ${fieldSource(f)},`)
       if (['text', 'area', 'editor', 'color'].includes(f.kind)) defaults[page.name][key] = f.default ?? ''

@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "MapPin",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Plik GPX":["gpxTitle","gpxText","gpxButton","gpxSoon"],"Podstawowe informacje":["infoTitle","rowName","rowStart","rowCharacter","rowLength","rowElevation","rowRange","rowRangeUnit","rowTime","rowDifficulty","rowBike","rowSurface"],"Nagłówki sekcji":["elevationTitle","elevationNote","mapTitle","descriptionTitle","overviewLabel","waypointsTitle","waypointsKm","waypointsPoint","waypointsMeaning","highlightsTitle","stopsTitle","natureTitle","cultureTitle","surfaceTitle","surfaceAsphalt","surfaceGravel","surfaceTerrain","touristTitle","recommendationTitle","safetyTitle","backLink","notFound"]}],
+    fieldLayout: [{"Plik GPX":["gpxTitle","gpxText","gpxButton","gpxSoon"],"Podstawowe informacje":["infoTitle","rowName","rowStart","rowCharacter","rowLength","rowElevation","rowRange","rowRangeUnit","rowTime","rowDifficulty","rowBike","rowSurface"],"Nagłówki sekcji":["elevationTitle","elevationNote","mapTitle","descriptionTitle","overviewLabel","waypointsTitle","waypointsKm","waypointsPoint","waypointsMeaning","highlightsTitle","stopsTitle","natureTitle","cultureTitle","surfaceTitle","surfaceAsphalt","surfaceGravel","surfaceTerrain","touristTitle","recommendationTitle","safetyTitle","backLink","notFound"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
   },
   fields: {
     gpxTitle: { type: 'text', options: {"required":false,"label":"Nagłówek","default":"Pobierz nawigację GPX"} },
@@ -51,5 +51,11 @@ export default defineCollection({
     safetyTitle: { type: 'text', options: {"required":false,"label":"Bezpieczeństwo","default":"Bezpieczeństwo"} },
     backLink: { type: 'text', options: {"required":false,"label":"Link powrotu","default":"← Wróć do wszystkich tras"} },
     notFound: { type: 'text', options: {"required":false,"label":"Gdy trasy nie ma","default":"Nie znaleziono trasy"} },
+    themeBackground: { type: 'color', options: {"required":false,"label":"Tło strony","description":"Tło całej treści tej podstrony.","default":""} },
+    themeHero: { type: 'color', options: {"required":false,"label":"Tło nagłówka","description":"Tło górnej części z tytułem podstrony.","default":""} },
+    themeTitle: { type: 'color', options: {"required":false,"label":"Tytuły i nagłówki","description":"Tytuł podstrony, tytuły sekcji i kart.","default":""} },
+    themeLead: { type: 'color', options: {"required":false,"label":"Opisy wyróżnione (wstępy)","description":"Pierwszy akapit opisów i teksty pod tytułami sekcji.","default":""} },
+    themeBody: { type: 'color', options: {"required":false,"label":"Zwykły tekst","description":"Akapity w opisach i na kartach.","default":""} },
+    themeAccent: { type: 'color', options: {"required":false,"label":"Akcent: przyciski, linki, napisy nad tytułami","default":""} },
   },
 })

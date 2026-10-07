@@ -58,7 +58,7 @@
     <div class="flex flex-1 flex-col overflow-hidden">
       <div class="flex h-full flex-1">
         <div v-if="showMenu" class="scrollbar-thin h-full w-full max-w-[18rem] overflow-y-auto p-8 pr-0">
-          <!-- Menu pogrupowane według stron witryny (app/dashboard/menuGroups.ts). -->
+          <!-- Menu pogrupowane według stron witryny (app/config/menuGroups.ts). -->
           <ul class="flex flex-col items-start pt-0.5">
             <li v-for="group of groupedMenu.groups" :key="group.label" class="w-full">
               <button
@@ -117,7 +117,7 @@
 
 <script setup>
 import { computed, ref, useRoute, useRuntimeConfig, watch } from "#imports";
-import { MENU_GROUPS } from "./menuGroups";
+import { MENU_GROUPS } from "../config/menuGroups";
 import { primaryLanguage } from "#pruvious";
 import { dashboardHeaderLogoComponent, dashboardMiscComponent } from "#pruvious/dashboard";
 import "~~/node_modules/pruvious/dist/runtime/assets/style.css";
