@@ -10,7 +10,7 @@ export default defineCollection({
   dashboard: {
     icon: "Photo",
     additionalRecordOptionsVueComponent: './app/dashboard/ViewOnSite.vue',
-    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statEditionsOne","statEditionsFew","statEditionsMany","statContestsOne","statContestsFew","statContestsMany","statExtra","pageTitle"],"Pasek z liczbami":["barEditionsOne","barEditionsFew","barEditionsMany","barContestsOne","barContestsFew","barContestsMany","stats"],"Festiwal":["festivalKicker","festivalTitle","festivalLead","editionNewest","editionLink","announcementImage","announcementBadge","announcementText","upcomingKicker","upcomingTitle","upcomingText","upcomingButton"],"Konkursy":["contestsKicker","contestsTitle","documentsTitle","documentPreview","documentDownload","contestsLink"],"Strona edycji":["editionKicker","editionBack","editionNotFound"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
+    fieldLayout: [{"Nagłówek":["heroKicker","heroTitle","heroDescription","statEditionsOne","statEditionsFew","statEditionsMany","statContestsOne","statContestsFew","statContestsMany","statExtra","pageTitle"],"Pasek z liczbami":["barEditionsOne","barEditionsFew","barEditionsMany","barContestsOne","barContestsFew","barContestsMany","stats"],"Festiwal":["festivalKicker","festivalTitle","festivalLead","editionNewest","editionLink","announcementImage","announcementBadge","announcementText","upcomingKicker","upcomingTitle","upcomingText","upcomingButton"],"Konkursy":["contestsKicker","contestsTitle","documentsTitle","documentPreview","documentDownload","contestsLink","awardFirst","awardSecond","awardThird","awardMention"],"Strona edycji":["editionKicker","editionBack","editionNotFound"],"Wygląd tej strony":["<./app/dashboard/ThemePreview.vue>","themeBackground","themeHero","themeTitle","themeLead","themeBody","themeAccent"]}],
   },
   fields: {
     heroKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Kultura"} },
@@ -49,6 +49,10 @@ export default defineCollection({
     documentPreview: { type: 'text', options: {"required":false,"label":"Przycisk podglądu","default":"Podgląd"} },
     documentDownload: { type: 'text', options: {"required":false,"label":"Przycisk pobierania","default":"Pobierz"} },
     contestsLink: { type: 'text', options: {"required":false,"label":"Link pod konkursem","default":"Śledź aktualności →"} },
+    awardFirst: { type: 'text', options: {"required":false,"label":"Laureaci: I miejsce","default":"I miejsce"} },
+    awardSecond: { type: 'text', options: {"required":false,"label":"Laureaci: II miejsce","default":"II miejsce"} },
+    awardThird: { type: 'text', options: {"required":false,"label":"Laureaci: III miejsce","default":"III miejsce"} },
+    awardMention: { type: 'text', options: {"required":false,"label":"Laureaci: wyróżnienie","default":"Wyróżnienie"} },
     editionKicker: { type: 'text', options: {"required":false,"label":"Napis nad tytułem","default":"Festiwal Granie Bez Granic"} },
     editionBack: { type: 'text', options: {"required":false,"label":"Link powrotu","default":"← Wróć do Kultury"} },
     editionNotFound: { type: 'text', options: {"required":false,"label":"Gdy edycji nie ma","default":"Nie znaleziono edycji"} },

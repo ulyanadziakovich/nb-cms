@@ -324,6 +324,10 @@ export default [
         documentPreview: text('Przycisk podglądu', 'Podgląd'),
         documentDownload: text('Przycisk pobierania', 'Pobierz'),
         contestsLink: text('Link pod konkursem', 'Śledź aktualności →'),
+        awardFirst: text('Laureaci: I miejsce', 'I miejsce'),
+        awardSecond: text('Laureaci: II miejsce', 'II miejsce'),
+        awardThird: text('Laureaci: III miejsce', 'III miejsce'),
+        awardMention: text('Laureaci: wyróżnienie', 'Wyróżnienie'),
       },
       'Strona edycji': {
         editionKicker: text('Napis nad tytułem', 'Festiwal Granie Bez Granic'),

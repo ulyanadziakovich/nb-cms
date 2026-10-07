@@ -44,6 +44,33 @@ export default defineCollection({
         },
       },
     },
+    laureatesTitle: {
+      type: 'text',
+      options: { required: false, label: 'Laureaci — tytuł sekcji', placeholder: 'np. Laureaci III edycji (2025)' },
+    },
+    laureates: {
+      type: 'repeater',
+      options: {
+        label: 'Laureaci (nagrodzone prace)',
+        description: 'Galeria nagrodzonych prac pod konkursem. Kliknij „Dodaj pracę”, wgraj zdjęcie i uzupełnij dane. Kolejność zmienisz, przeciągając.',
+        addLabel: 'Dodaj pracę',
+        subfields: {
+          image: { type: 'image', options: { required: true, label: 'Zdjęcie pracy' } },
+          title: { type: 'text', options: { required: true, label: 'Tytuł pracy' } },
+          author: { type: 'text', options: { required: true, label: 'Autor' } },
+          category: { type: 'text', options: { required: false, label: 'Kategoria', placeholder: 'np. Krajobrazy' } },
+          award: {
+            type: 'select',
+            options: {
+              required: true,
+              label: 'Nagroda',
+              default: 'wyroznienie',
+              choices: { 'i-miejsce': 'I miejsce', 'ii-miejsce': 'II miejsce', 'iii-miejsce': 'III miejsce', wyroznienie: 'Wyróżnienie' },
+            },
+          },
+        },
+      },
+    },
     order: { type: 'number', options: { required: false, default: 0, label: 'Kolejność', description: 'Ustawiana przeciąganiem na liście (uchwyt ⠿).' } },
   },
 })
