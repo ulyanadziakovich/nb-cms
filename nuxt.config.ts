@@ -9,9 +9,19 @@ export default defineNuxtConfig({
   devServer: { port: 4321 },
   modules: ["pruvious"],
 
-  // Adres strony, na którą prowadzi przycisk „Zobacz na stronie” w panelu.
   runtimeConfig: {
+    // Adres strony, na którą prowadzi przycisk „Zobacz na stronie” w panelu.
     public: { siteUrl: 'https://nowoczesneb.vercel.app' },
+    // Formularz kontaktowy (server/api/contact.post.ts). Dane SMTP tylko z env:
+    // NUXT_CONTACT_MAIL_SMTP_HOST / _SMTP_PORT / _SMTP_USER / _SMTP_PASS / _TO / _FROM.
+    contactMail: {
+      smtpHost: '',
+      smtpPort: 587,
+      smtpUser: '',
+      smtpPass: '',
+      to: 'biuro@nowoczesnebieszczady.com',
+      from: '',
+    },
   },
 
   // pruvious.jwt.secretKey is intentionally NOT set here — Pruvious reads it from the

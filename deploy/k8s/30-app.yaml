@@ -39,6 +39,8 @@ spec:
             - { name: NUXT_PRUVIOUS_PAGE_CACHE_PATH, value: "/tmp/page-cache" }
           envFrom:
             - secretRef: { name: pruvious-app }   # NUXT_PRUVIOUS_JWT_SECRET_KEY
+            # formularz kontaktowy: NUXT_CONTACT_MAIL_SMTP_HOST / _SMTP_PORT / _SMTP_USER / _SMTP_PASS
+            - secretRef: { name: pruvious-smtp, optional: true }
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true

@@ -61,7 +61,7 @@ export default [
     tabs: {
       Kontakt: {
         logo: image('Logo (ikona)', 'W nagłówku i stopce.'),
-        email: text('Adres e-mail', 'biuro@nowoczesnebieszczady.pl'),
+        email: text('Adres e-mail', 'biuro@nowoczesnebieszczady.com'),
         phone: text('Telefon', '507 068 728'),
         address: text('Adres', 'Ustrzyki Dolne, woj. podkarpackie'),
         facebookUrl: link('Facebook (adres strony)', 'https://www.facebook.com/nowoczesne.bieszczady/?locale=pl_PL'),
@@ -394,6 +394,7 @@ export default [
         formMessage: text('Pole: wiadomość', 'Wiadomość'),
         formMessagePlaceholder: text('Podpowiedź w polu wiadomości', 'W czym możemy pomóc?'),
         formSubmit: text('Przycisk wysyłania', 'Wyślij wiadomość'),
+        formError: area('Gdy wysłanie się nie uda', 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz bezpośrednio na adres e-mail.', undefined, 2),
       },
       'Dane kontaktowe': {
         infoTitle: text('Nagłówek danych', 'Stowarzyszenie Nowoczesne Bieszczady'),

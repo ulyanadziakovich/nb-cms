@@ -14,7 +14,7 @@ export default defineCollection({
   },
   fields: {
     logo: { type: 'image', options: {"required":false,"label":"Logo (ikona)","description":"W nagłówku i stopce."} },
-    email: { type: 'text', options: {"required":false,"label":"Adres e-mail","default":"biuro@nowoczesnebieszczady.pl"} },
+    email: { type: 'text', options: {"required":false,"label":"Adres e-mail","default":"biuro@nowoczesnebieszczady.com"} },
     phone: { type: 'text', options: {"required":false,"label":"Telefon","default":"507 068 728"} },
     address: { type: 'text', options: {"required":false,"label":"Adres","default":"Ustrzyki Dolne, woj. podkarpackie"} },
     facebookUrl: { type: 'text', options: {"required":false,"label":"Facebook (adres strony)","default":"https://www.facebook.com/nowoczesne.bieszczady/?locale=pl_PL","placeholder":"np. /aktualnosci albo https://…"} },
